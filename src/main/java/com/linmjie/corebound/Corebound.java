@@ -87,7 +87,7 @@ public class Corebound {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(ModBlocks.RAW_TIN_BLOCk);
+            event.accept(ModBlocks.RAW_TIN_BLOCK);
         }
     }
     // Creates a creative tab with the id "corebound:example_tab" for the example item, that is placed after the combat tab
@@ -97,12 +97,16 @@ public class Corebound {
             .icon(() -> ModItems.LOGGER_AXE.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 output.accept(ModItems.RAW_TIN.get());
-                output.accept(ModBlocks.RAW_TIN_BLOCk.get());
+                output.accept(ModBlocks.RAW_TIN_BLOCK.get());
                 output.accept(ModItems.ROCK.get());
                 output.accept(ModItems.LOGGER_AXE.get());
                 output.accept(ModItems.WOODEN_SHEARS);
                 output.accept(ModItems.TWIG);
                 output.accept(ModItems.SHARP_STICK);
+                output.accept(ModItems.SAW);
+                output.accept(ModItems.SCISSORS);
+                output.accept(ModItems.HAMMER);
+                output.accept(ModBlocks.INCOMPLETE_CRAFTING_TABLE.get());
             }).build());
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

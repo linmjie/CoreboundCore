@@ -16,7 +16,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        blockWithItem(ModBlocks.RAW_TIN_BLOCk);
+        blockWithItem(ModBlocks.RAW_TIN_BLOCK);
     }
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {

@@ -16,7 +16,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        dropSelf(ModBlocks.RAW_TIN_BLOCk.get());
+        dropSelf(ModBlocks.RAW_TIN_BLOCK.get());
+        dropSelf(ModBlocks.INCOMPLETE_CRAFTING_TABLE.get());
     }
 
     @Override

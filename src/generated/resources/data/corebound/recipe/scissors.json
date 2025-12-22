@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "minecraft:clay_ball"
+    },
+    "I": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "C C",
+    " C ",
+    "I I"
+  ],
+  "result": {
+    "count": 1,
+    "id": "corebound:scissors"
+  }
+}

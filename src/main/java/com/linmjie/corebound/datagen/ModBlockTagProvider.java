@@ -21,7 +21,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(ModBlocks.RAW_TIN_BLOCk.get());
+                .add(ModBlocks.RAW_TIN_BLOCK.get());
         tag(ModTags.Blocks.DROPS_ROCKS)
                 .add(Blocks.COBBLESTONE)
                 .add(Blocks.COBBLED_DEEPSLATE)

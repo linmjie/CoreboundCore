@@ -1,6 +1,7 @@
 {
   "itemGroup.corebound": "Corebound",
   "block.corebound.raw_tin_block": "Block of Raw Tin",
+  "block.corebound.incomplete_crafting_table": "Incomplete Crafting Table",
 
   "item.corebound.raw_tin": "Raw Tin",
   "item.corebound.twig": "Twig",
@@ -8,6 +9,14 @@
   "item.corebound.logger_axe": "Logger Axe",
   "item.corebound.wooden_shears": "Wooden Shears",
   "item.corebound.sharp_stick": "Crude Spear",
+  "item.corebound.saw": "Saw",
+  "item.corebound.scissors": "Scissors",
+  "item.corebound.hammer": "Hammer",
+
+  "tag.item.corebound.rocks_replace": "Rocks Replace",
+  "tag.item.corebound.non_stripped_logs_that_burn": "Burnable Logs",
+  "tag.item.corebound.stripped_logs_that_burn": "Burnable Stripped Logs",
+  "tag.item.corebound.rock_adjacent": "Rock Adjacent",
 
   "corebound.configuration.title": "Example Mod Configs",
   "corebound.configuration.section.corebound.common.toml": "Example Mod Configs",
