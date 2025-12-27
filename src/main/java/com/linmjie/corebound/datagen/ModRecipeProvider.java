@@ -11,10 +11,7 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.CraftingBookCategory;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.ShapedRecipe;
-import net.minecraft.world.item.crafting.ShapedRecipePattern;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
@@ -38,14 +35,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', Items.STICK)
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
                 .save(recipeOutput);
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.SAW.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.UNFIRED_SAW.get())
                 .pattern(" C")
                 .pattern("CI")
                 .define('C', Items.CLAY_BALL)
                 .define('I', Items.STICK)
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
                 .save(recipeOutput);
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.SCISSORS.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.UNFIRED_SCISSORS.get())
                 .pattern("C C")
                 .pattern(" C ")
                 .pattern("I I")
@@ -53,7 +50,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', Items.STICK)
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
                 .save(recipeOutput);
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.HAMMER.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.UNFIRED_HAMMER.get())
                 .pattern("CCC")
                 .pattern("CIC")
                 .pattern(" I ")
@@ -84,20 +81,20 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('#', ItemTags.PLANKS)
                 .unlockedBy(getHasName(ModItems.TWIG), has(ModItems.TWIG))
                 .save(recipeOutput);
+
         ninePacker(recipeOutput, ModItems.RAW_TIN.get(), ModBlocks.RAW_TIN_BLOCK.get(), "tin");
+
+        coreboundToolsFiring(recipeOutput, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, 200);
+        coreboundToolsFiring(recipeOutput, "blasting", RecipeSerializer.BLASTING_RECIPE, BlastingRecipe::new, 1200);
     }
 
-public static final ShapedRecipe CUSTOM_CAMPFIRE = new ShapedRecipe(
-    "campfire",
-    CraftingBookCategory.BUILDING,
-    new ShapedRecipePattern(2, 2,
-        NonNullList.of(Ingredient.EMPTY, //First ingredient has to be empty??
-            Ingredient.of(Tags.Items.RODS_WOODEN), Ingredient.of(Tags.Items.RODS_WOODEN),
-            Ingredient.of(ItemTags.LOGS), Ingredient.of(ItemTags.LOGS)
-        ),
-    Optional.empty()),
-    new ItemStack(Items.CAMPFIRE)
-);
+    protected static <T extends AbstractCookingRecipe> void coreboundToolsFiring(RecipeOutput recipeOutput, String cookingMethod,
+                            RecipeSerializer<T> cookingSerializer, AbstractCookingRecipe.Factory<T> recipeFactory, int cookingTime) 
+    {
+        simpleCookingRecipe(recipeOutput, cookingMethod, cookingSerializer, recipeFactory, cookingTime, ModItems.UNFIRED_SAW, ModItems.SAW, 0.2F);
+        simpleCookingRecipe(recipeOutput, cookingMethod, cookingSerializer, recipeFactory, cookingTime, ModItems.UNFIRED_SCISSORS, ModItems.SCISSORS, 0.2F);
+        simpleCookingRecipe(recipeOutput, cookingMethod, cookingSerializer, recipeFactory, cookingTime, ModItems.UNFIRED_HAMMER, ModItems.HAMMER, 0.2F);
+    }
 
     //HELPER METHODS FOR STANDARDIZED RECIPE TYPES
 

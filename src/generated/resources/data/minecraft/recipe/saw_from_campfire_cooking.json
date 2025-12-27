@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.2,
+  "ingredient": {
+    "item": "corebound:unfired_saw"
+  },
+  "result": {
+    "count": 1,
+    "id": "corebound:saw"
+  }
+}

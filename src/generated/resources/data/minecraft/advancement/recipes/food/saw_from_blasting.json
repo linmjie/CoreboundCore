@@ -1,32 +1,32 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_stick": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:saw_from_blasting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_unfired_saw": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:stick"
+            "items": "corebound:unfired_saw"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "corebound:saw"
-      },
-      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "has_stick"
+      "has_unfired_saw"
     ]
   ],
   "rewards": {
     "recipes": [
-      "corebound:saw"
+      "minecraft:saw_from_blasting"
     ]
   }
 }

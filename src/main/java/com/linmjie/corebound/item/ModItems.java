@@ -21,6 +21,10 @@ public class ModItems {
     public static final DeferredItem<Item> TWIG = ITEMS.registerSimpleItem("twig");
     public static final DeferredItem<Item> ROCK = ITEMS.registerSimpleItem("rock");
 
+    public static final DeferredItem<Item> UNFIRED_SAW = ITEMS.registerSimpleItem("unfired_saw");
+    public static final DeferredItem<Item> UNFIRED_SCISSORS = ITEMS.registerSimpleItem("unfired_scissors");
+    public static final DeferredItem<Item> UNFIRED_HAMMER = ITEMS.registerSimpleItem("unfirede_hammer");
+
     public static final DeferredItem<Item> SAW = ITEMS.registerSimpleItem("saw");
     public static final DeferredItem<Item> SCISSORS = ITEMS.registerSimpleItem("scissors");
     public static final DeferredItem<Item> HAMMER = ITEMS.registerSimpleItem("hammer");

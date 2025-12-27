@@ -138,14 +138,11 @@ public class ModEvents {
 	@SubscribeEvent
     public static void onRecipeRegistrationEvent(RecipesUpdatedEvent event) {
         ResourceLocation oldFireResLoc = ResourceLocation.withDefaultNamespace("campfire");
-        ResourceLocation newFireResLoc = ResourceLocation.fromNamespaceAndPath(Corebound.MODID, "campfire");
         RecipeManager recipeManager = event.getRecipeManager();
 
         var recipes = event.getRecipeManager().getRecipes().stream()
             .filter(holder -> !holder.id().equals(oldFireResLoc))
             .collect(Collectors.toCollection(ArrayList::new));
-
-        recipes.add(new RecipeHolder<>(newFireResLoc, ModRecipeProvider.CUSTOM_CAMPFIRE));
 
         recipeManager.replaceRecipes(recipes);
     }

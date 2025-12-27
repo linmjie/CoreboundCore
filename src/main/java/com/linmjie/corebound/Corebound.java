@@ -103,6 +103,9 @@ public class Corebound {
                 output.accept(ModItems.WOODEN_SHEARS);
                 output.accept(ModItems.TWIG);
                 output.accept(ModItems.SHARP_STICK);
+                output.accept(ModItems.UNFIRED_SAW);
+                output.accept(ModItems.UNFIRED_SCISSORS);
+                output.accept(ModItems.UNFIRED_HAMMER);
                 output.accept(ModItems.SAW);
                 output.accept(ModItems.SCISSORS);
                 output.accept(ModItems.HAMMER);

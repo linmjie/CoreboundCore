@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 1200,
+  "experience": 0.2,
+  "ingredient": {
+    "item": "corebound:unfirede_hammer"
+  },
+  "result": {
+    "count": 1,
+    "id": "corebound:hammer"
+  }
+}

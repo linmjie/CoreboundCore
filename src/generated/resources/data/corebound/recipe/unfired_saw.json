@@ -10,12 +10,11 @@
     }
   },
   "pattern": [
-    "C C",
-    " C ",
-    "I I"
+    " C",
+    "CI"
   ],
   "result": {
     "count": 1,
-    "id": "corebound:scissors"
+    "id": "corebound:unfired_saw"
   }
 }

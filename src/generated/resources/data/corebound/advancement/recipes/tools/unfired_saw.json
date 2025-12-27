@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "corebound:hammer"
+        "recipe": "corebound:unfired_saw"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "corebound:hammer"
+      "corebound:unfired_saw"
     ]
   }
 }
