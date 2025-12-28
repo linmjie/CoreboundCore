@@ -59,5 +59,19 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(Items.STONE)
                 .add(Items.DEEPSLATE)
                 .add(Items.BLACKSTONE);
+        tag(ModTags.Items.WOODEN_TOOLS)
+                .add(Items.WOODEN_HOE)
+                .add(Items.WOODEN_SHOVEL)
+                .add(Items.WOODEN_PICKAXE)
+                .add(Items.WOODEN_AXE)
+                .add(Items.WOODEN_SWORD)
+                .add(ModItems.WOODEN_SHEARS.get())
+                .add(ModItems.SHARP_STICK.get());
+        tag(ModTags.Items.STONE_TOOLS)
+                .add(Items.STONE_HOE)
+                .add(Items.STONE_SHOVEL)
+                .add(Items.STONE_PICKAXE)
+                .add(Items.STONE_AXE)
+                .add(Items.STONE_SWORD);
     }
 }

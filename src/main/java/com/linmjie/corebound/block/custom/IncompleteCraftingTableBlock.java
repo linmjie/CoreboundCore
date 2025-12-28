@@ -114,7 +114,8 @@ public class IncompleteCraftingTableBlock extends CraftingTableBlock {
     protected MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
         return new SimpleMenuProvider(
                 (p_52229_, p_52230_, p_52231_) -> new IncompleteCraftingMenu(
-                        p_52229_, p_52230_, ContainerLevelAccess.create(level, pos), getToolsMask(state)),
+                        p_52229_, p_52230_, ContainerLevelAccess.create(level, pos),
+                        state.getValue(HAS_SAW), state.getValue(HAS_SCISSORS), state.getValue(HAS_HAMMER)),
                 CONTAINER_TITLE
         );
     }

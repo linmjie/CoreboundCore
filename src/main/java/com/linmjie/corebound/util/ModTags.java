@@ -22,6 +22,8 @@ public class ModTags {
         public static final TagKey<Item> NON_STRIPPED_LOGS_THAT_BURN = createTag("non_stripped_logs_that_burn");
         public static final TagKey<Item> STRIPPED_LOGS_THAT_BURN = createTag("stripped_logs_that_burn");
         public static final TagKey<Item> ROCK_ADJACENT = createTag("rock_adjacent");
+        public static final TagKey<Item> WOODEN_TOOLS = createTag("wooden_tools");
+        public static final TagKey<Item> STONE_TOOLS = createTag("stone_tools");
 
         private static net.minecraft.tags.TagKey<Item> createTag(String name){
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(Corebound.MODID, name));

@@ -43,5 +43,5 @@ public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
                         MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.WOODEN_PICKAXE)).build(),
                         LootItemRandomChanceCondition.randomChance(1f).build() },
                         ModTags.Items.ROCKS_REPLACE));
-    };
+    }
 }
