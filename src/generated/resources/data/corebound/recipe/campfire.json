@@ -6,7 +6,7 @@
       "tag": "c:rods/wooden"
     },
     "L": {
-      "tag": "minecraft:logs"
+      "tag": "minecraft:logs_that_burn"
     }
   },
   "pattern": [
@@ -16,6 +16,5 @@
   "result": {
     "count": 1,
     "id": "minecraft:campfire"
-  },
-  "show_notification": true
+  }
 }

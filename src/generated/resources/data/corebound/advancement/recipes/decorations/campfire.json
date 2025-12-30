@@ -3,15 +3,15 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:hammer_from_blasting"
+        "recipe": "corebound:campfire"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_unfired_hammer": {
+    "has_twig": {
       "conditions": {
         "items": [
           {
-            "items": "corebound:unfired_hammer"
+            "items": "corebound:twig"
           }
         ]
       },
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_unfired_hammer"
+      "has_twig"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:hammer_from_blasting"
+      "corebound:campfire"
     ]
   }
 }

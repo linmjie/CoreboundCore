@@ -1,32 +1,32 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "minecraft:hammer_from_blasting"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_unfired_hammer": {
+    "has_stick": {
       "conditions": {
         "items": [
           {
-            "items": "corebound:unfired_hammer"
+            "items": "minecraft:stick"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "corebound:unfired_hammer"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "has_unfired_hammer"
+      "has_stick"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:hammer_from_blasting"
+      "corebound:unfired_hammer"
     ]
   }
 }

@@ -7,11 +7,11 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_unfirede_hammer": {
+    "has_unfired_hammer": {
       "conditions": {
         "items": [
           {
-            "items": "corebound:unfirede_hammer"
+            "items": "corebound:unfired_hammer"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_unfirede_hammer"
+      "has_unfired_hammer"
     ]
   ],
   "rewards": {

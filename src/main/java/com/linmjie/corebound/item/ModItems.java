@@ -3,14 +3,23 @@ package com.linmjie.corebound.item;
 import com.linmjie.corebound.Corebound;
 import com.linmjie.corebound.item.custom.LoggerItem;
 import com.linmjie.corebound.item.custom.SpearItem;
+import com.linmjie.corebound.item.custom.TwigItem;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -18,7 +27,9 @@ public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Corebound.MODID);
 
     public static final DeferredItem<Item> RAW_TIN = ITEMS.registerSimpleItem("raw_tin");
-    public static final DeferredItem<Item> TWIG = ITEMS.registerSimpleItem("twig");
+    public static final DeferredItem<Item> TWIG = ITEMS.register("twig",
+            () -> new TwigItem(new Item.Properties()));
+
     public static final DeferredItem<Item> ROCK = ITEMS.registerSimpleItem("rock");
 
     public static final DeferredItem<Item> UNFIRED_SAW = ITEMS.registerSimpleItem("unfired_saw");

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "minecraft:stone_tool_materials"
+    },
+    "I": {
+      "item": "minecraft:stick"
+    },
+    "T": {
+      "item": "corebound:twig"
+    }
+  },
+  "pattern": [
+    "###",
+    "TIT",
+    " I "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:stone_pickaxe"
+  }
+}

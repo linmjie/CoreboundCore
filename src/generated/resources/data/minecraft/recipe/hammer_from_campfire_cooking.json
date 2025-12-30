@@ -4,7 +4,7 @@
   "cookingtime": 200,
   "experience": 0.2,
   "ingredient": {
-    "item": "corebound:unfirede_hammer"
+    "item": "corebound:unfired_hammer"
   },
   "result": {
     "count": 1,

@@ -136,13 +136,27 @@ public class ModEvents {
         }
     }
 
+    private static final Set<String> recipesToRemove = Set.of(
+            "minecraft:campfire",
+            "minecraft:crafting_table",
+            "minecraft:wooden_sword",
+            "minecraft:wooden_shovel",
+            "minecraft:wooden_pickaxe",
+            "minecraft:wooden_axe",
+            "minecraft:wooden_hoe",
+            "minecraft:stone_sword",
+            "minecraft:stone_shovel",
+            "minecraft:stone_pickaxe",
+            "minecraft:stone_axe",
+            "minecraft:stone_hoe"
+    );
+
 	@SubscribeEvent
     public static void onRecipeRegistrationEvent(RecipesUpdatedEvent event) {
-        ResourceLocation oldFireResLoc = ResourceLocation.withDefaultNamespace("campfire");
         RecipeManager recipeManager = event.getRecipeManager();
 
         var recipes = event.getRecipeManager().getRecipes().stream()
-            .filter(holder -> !holder.id().equals(oldFireResLoc))
+            .filter(holder -> !recipesToRemove.contains(holder.id().toString()))
             .collect(Collectors.toCollection(ArrayList::new));
 
         recipeManager.replaceRecipes(recipes);
