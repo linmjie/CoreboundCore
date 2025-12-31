@@ -1,6 +1,7 @@
 package com.linmjie.corebound.datagen;
 
 import com.linmjie.corebound.Corebound;
+import com.linmjie.corebound.block.ModBlocks;
 import com.linmjie.corebound.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;

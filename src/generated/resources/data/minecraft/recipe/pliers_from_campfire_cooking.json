@@ -4,10 +4,10 @@
   "cookingtime": 200,
   "experience": 0.2,
   "ingredient": {
-    "item": "corebound:unfired_scissors"
+    "item": "corebound:unfired_pliers"
   },
   "result": {
     "count": 1,
-    "id": "corebound:scissors"
+    "id": "corebound:pliers"
   }
 }

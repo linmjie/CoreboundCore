@@ -3,15 +3,15 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:scissors_from_campfire_cooking"
+        "recipe": "minecraft:pliers_from_blasting"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_unfired_scissors": {
+    "has_unfired_pliers": {
       "conditions": {
         "items": [
           {
-            "items": "corebound:unfired_scissors"
+            "items": "corebound:unfired_pliers"
           }
         ]
       },
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_unfired_scissors"
+      "has_unfired_pliers"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:scissors_from_campfire_cooking"
+      "minecraft:pliers_from_blasting"
     ]
   }
 }

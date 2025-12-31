@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "corebound:block/incomplete_crafting_table_bottom",
+    "east": "corebound:block/incomplete_crafting_table_side_blank",
+    "north": "corebound:block/incomplete_crafting_table_front_ham",
+    "particle": "corebound:block/incomplete_crafting_table_front_blank",
+    "south": "corebound:block/incomplete_crafting_table_side_blank",
+    "up": "corebound:block/incomplete_crafting_table_top",
+    "west": "corebound:block/incomplete_crafting_table_front_ham"
+  }
+}

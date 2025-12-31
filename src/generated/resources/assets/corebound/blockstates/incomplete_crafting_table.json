@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "has_hammer=false,has_pliers=false,has_saw=false": {
+      "model": "corebound:block/incomplete_crafting_table"
+    },
+    "has_hammer=false,has_pliers=false,has_saw=true": {
+      "model": "corebound:block/incomplete_crafting_table_saw"
+    },
+    "has_hammer=false,has_pliers=true,has_saw=false": {
+      "model": "corebound:block/incomplete_crafting_table_pli"
+    },
+    "has_hammer=false,has_pliers=true,has_saw=true": {
+      "model": "corebound:block/incomplete_crafting_table_saw_pli"
+    },
+    "has_hammer=true,has_pliers=false,has_saw=false": {
+      "model": "corebound:block/incomplete_crafting_table_ham"
+    },
+    "has_hammer=true,has_pliers=false,has_saw=true": {
+      "model": "corebound:block/incomplete_crafting_table_saw_ham"
+    },
+    "has_hammer=true,has_pliers=true,has_saw=false": {
+      "model": "corebound:block/incomplete_crafting_table_pli_ham"
+    },
+    "has_hammer=true,has_pliers=true,has_saw=true": {
+      "model": "corebound:block/incomplete_crafting_table_saw_pli_ham"
+    }
+  }
+}
