@@ -5,21 +5,13 @@ import com.linmjie.corebound.item.custom.LoggerItem;
 import com.linmjie.corebound.item.custom.SpearItem;
 import com.linmjie.corebound.item.custom.TwigItem;
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -33,11 +25,11 @@ public class ModItems {
     public static final DeferredItem<Item> ROCK = ITEMS.registerSimpleItem("rock");
 
     public static final DeferredItem<Item> UNFIRED_SAW = ITEMS.registerSimpleItem("unfired_saw");
-    public static final DeferredItem<Item> UNFIRED_SCISSORS = ITEMS.registerSimpleItem("unfired_scissors");
+    public static final DeferredItem<Item> UNFIRED_PLIERS = ITEMS.registerSimpleItem("unfired_pliers");
     public static final DeferredItem<Item> UNFIRED_HAMMER = ITEMS.registerSimpleItem("unfired_hammer");
 
     public static final DeferredItem<Item> SAW = ITEMS.registerSimpleItem("saw");
-    public static final DeferredItem<Item> SCISSORS = ITEMS.registerSimpleItem("scissors");
+    public static final DeferredItem<Item> PLIERS = ITEMS.registerSimpleItem("pliers");
     public static final DeferredItem<Item> HAMMER = ITEMS.registerSimpleItem("hammer");
 
     public static final DeferredItem<LoggerItem> LOGGER_AXE = ITEMS.register("logger_axe",

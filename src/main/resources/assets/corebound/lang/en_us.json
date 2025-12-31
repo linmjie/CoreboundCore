@@ -10,16 +10,18 @@
   "item.corebound.wooden_shears": "Wooden Shears",
   "item.corebound.sharp_stick": "Crude Spear",
   "item.corebound.unfired_saw": "Unfired Saw",
-  "item.corebound.unfired_scissors": "Unfired Scissors",
+  "item.corebound.unfired_pliers": "Unfired Pliers",
   "item.corebound.unfired_hammer": "Unfired Hammer",
   "item.corebound.saw": "Saw",
-  "item.corebound.scissors": "Scissors",
+  "item.corebound.pliers": "Pliers",
   "item.corebound.hammer": "Hammer",
 
   "tag.item.corebound.rocks_replace": "Rocks Replace",
   "tag.item.corebound.non_stripped_logs_that_burn": "Burnable Logs",
   "tag.item.corebound.stripped_logs_that_burn": "Burnable Stripped Logs",
   "tag.item.corebound.rock_adjacent": "Rock Adjacent",
+
+  "container.incomplete_crafting": "Limited Crafting",
 
   "corebound.configuration.title": "Example Mod Configs",
   "corebound.configuration.section.corebound.common.toml": "Example Mod Configs",

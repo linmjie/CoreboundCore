@@ -100,7 +100,7 @@ public class ModEvents {
 
             //Clay-shovel tick queue work
             //The tick counter decrementer for the clay-till mechanic event below
-            if (CLAY_SHOVEL_TICK_QUEUE.containsKey(serverPlayer)){
+            if (CLAY_SHOVEL_TICK_QUEUE.containsKey(serverPlayer)) {
                 int ticksLeft = CLAY_SHOVEL_TICK_QUEUE.get(serverPlayer);
                 if (ticksLeft <= 0)
                     CLAY_SHOVEL_TICK_QUEUE.remove(serverPlayer);
@@ -117,14 +117,14 @@ public class ModEvents {
         Level level = event.getLevel();
         Player player = event.getPlayer();
 
-        if(!level.isClientSide() && player != null){
+        if(!level.isClientSide() && player != null) {
             BlockPos pos = event.getPos();
             ItemStack stack = event.getItemStack();
             
             if(event.getLevel().getBlockState(pos).is(Blocks.DIRT_PATH)
-            && stack.is(ItemTags.SHOVELS)
-            && !CLAY_SHOVEL_TICK_QUEUE.containsKey((ServerPlayer) player)) 
-            {
+                    && stack.is(ItemTags.SHOVELS)
+                    && !CLAY_SHOVEL_TICK_QUEUE.containsKey((ServerPlayer) player)
+            ){
                 CLAY_SHOVEL_TICK_QUEUE.put((ServerPlayer) player, CLAY_GETTER_DELAY); //Default tick delay of 5
                 stack.hurtAndBreak(1, (ServerLevel) level, (ServerPlayer) player,
                         item -> player.onEquippedItemBroken(item, EquipmentSlot.MAINHAND));

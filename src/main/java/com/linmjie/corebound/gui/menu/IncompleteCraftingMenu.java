@@ -41,11 +41,11 @@ public class IncompleteCraftingMenu extends RecipeBookMenu<CraftingInput, Crafti
     private boolean placingRecipe;
 
     private final boolean hasSaw;
-    private final boolean hasScissors;
+    private final boolean hasPliers;
     private final boolean hasHammer;
 
     private final Set<String> sawRecipes;
-    private final Set<String> scissorsRecipes;
+    private final Set<String> pliersRecipes;
     private final Set<String> hammerRecipes;
 
 
@@ -53,7 +53,7 @@ public class IncompleteCraftingMenu extends RecipeBookMenu<CraftingInput, Crafti
         this(containerId, playerInventory, ContainerLevelAccess.NULL, false, false, false);
     }
 
-    public IncompleteCraftingMenu(int containerId, Inventory playerInventory, ContainerLevelAccess access, boolean hasSaw, boolean hasScissors, boolean hasHammer) {
+    public IncompleteCraftingMenu(int containerId, Inventory playerInventory, ContainerLevelAccess access, boolean hasSaw, boolean hasPliers, boolean hasHammer) {
         super(MenuType.CRAFTING, containerId);
         this.craftSlots = new TransientCraftingContainer(this, 3, 3);
         this.resultSlots = new ResultContainer();
@@ -78,7 +78,7 @@ public class IncompleteCraftingMenu extends RecipeBookMenu<CraftingInput, Crafti
         }
 
         this.hasSaw = hasSaw;
-        this.hasScissors = hasScissors;
+        this.hasPliers = hasPliers;
         this.hasHammer = hasHammer;
 
         //Manually adding everything
@@ -86,8 +86,8 @@ public class IncompleteCraftingMenu extends RecipeBookMenu<CraftingInput, Crafti
         sawRecipes.addAll(CoreboundUtils.collectItems(ItemTags.PLANKS));
         sawRecipes.addAll(CoreboundUtils.collectItems(ModTags.Items.WOODEN_TOOLS, "corebound"));
 
-        scissorsRecipes = new HashSet<>();
-        scissorsRecipes.addAll(CoreboundUtils.collectItems(ModTags.Items.STONE_TOOLS, "corebound"));
+        pliersRecipes = new HashSet<>();
+        pliersRecipes.addAll(CoreboundUtils.collectItems(ModTags.Items.STONE_TOOLS, "corebound"));
 
         hammerRecipes = new HashSet<>();
         hammerRecipes.add("corebound:cobblestone");
@@ -95,11 +95,11 @@ public class IncompleteCraftingMenu extends RecipeBookMenu<CraftingInput, Crafti
 
     protected boolean validateRecipe(String resource){
         Corebound.LOGGER.info("Has Saw? {}", hasSaw);
-        Corebound.LOGGER.info("Has Tweezers? {}", hasScissors);
+        Corebound.LOGGER.info("Has ? {}", hasPliers);
         Corebound.LOGGER.info("Has Hammer? {}", hasHammer);
         if (hasSaw && sawRecipes.contains(resource))
             return true;
-        if (hasScissors && scissorsRecipes.contains(resource))
+        if (hasPliers && pliersRecipes.contains(resource))
             return true;
         if (hasHammer && hammerRecipes.contains(resource))
             return true;

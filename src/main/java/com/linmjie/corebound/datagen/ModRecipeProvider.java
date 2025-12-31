@@ -54,7 +54,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('I', Items.STICK)
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
                 .save(recipeOutput);
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.UNFIRED_SCISSORS.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.UNFIRED_PLIERS.get())
                 .pattern("C C")
                 .pattern(" C ")
                 .pattern("I I")
@@ -116,7 +116,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                             RecipeSerializer<T> cookingSerializer, AbstractCookingRecipe.Factory<T> recipeFactory, int cookingTime) 
     {
         simpleCookingRecipe(recipeOutput, cookingMethod, cookingSerializer, recipeFactory, cookingTime, ModItems.UNFIRED_SAW, ModItems.SAW, 0.2F);
-        simpleCookingRecipe(recipeOutput, cookingMethod, cookingSerializer, recipeFactory, cookingTime, ModItems.UNFIRED_SCISSORS, ModItems.SCISSORS, 0.2F);
+        simpleCookingRecipe(recipeOutput, cookingMethod, cookingSerializer, recipeFactory, cookingTime, ModItems.UNFIRED_PLIERS, ModItems.PLIERS, 0.2F);
         simpleCookingRecipe(recipeOutput, cookingMethod, cookingSerializer, recipeFactory, cookingTime, ModItems.UNFIRED_HAMMER, ModItems.HAMMER, 0.2F);
     }
 

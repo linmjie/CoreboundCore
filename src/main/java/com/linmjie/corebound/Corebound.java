@@ -104,10 +104,10 @@ public class Corebound {
                 output.accept(ModItems.TWIG);
                 output.accept(ModItems.SHARP_STICK);
                 output.accept(ModItems.UNFIRED_SAW);
-                output.accept(ModItems.UNFIRED_SCISSORS);
+                output.accept(ModItems.UNFIRED_PLIERS);
                 output.accept(ModItems.UNFIRED_HAMMER);
                 output.accept(ModItems.SAW);
-                output.accept(ModItems.SCISSORS);
+                output.accept(ModItems.PLIERS);
                 output.accept(ModItems.HAMMER);
                 output.accept(ModBlocks.INCOMPLETE_CRAFTING_TABLE.get());
             }).build());

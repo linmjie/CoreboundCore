@@ -27,7 +27,7 @@ public class IncompleteCraftingTableBlock extends CraftingTableBlock {
     public static final MapCodec<IncompleteCraftingTableBlock> CODEC = simpleCodec(IncompleteCraftingTableBlock::new);
     private static final Component CONTAINER_TITLE = Component.translatable("container.incomplete_crafting");
     public static final BooleanProperty HAS_SAW = BooleanProperty.create("has_saw");
-    public static final BooleanProperty HAS_SCISSORS = BooleanProperty.create("has_scissors");
+    public static final BooleanProperty HAS_PLIERS = BooleanProperty.create("has_pliers");
     public static final BooleanProperty HAS_HAMMER = BooleanProperty.create("has_hammer");
 
     public MapCodec<? extends IncompleteCraftingTableBlock> codec() {
@@ -37,25 +37,25 @@ public class IncompleteCraftingTableBlock extends CraftingTableBlock {
     public IncompleteCraftingTableBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(HAS_SAW, false));
-        this.registerDefaultState(this.defaultBlockState().setValue(HAS_SCISSORS, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(HAS_PLIERS, false));
         this.registerDefaultState(this.defaultBlockState().setValue(HAS_HAMMER, false));
     }
 
     private Item getToolItem(BooleanProperty has){
         if (has == HAS_SAW)
             return ModItems.SAW.asItem();
-        if (has == HAS_SCISSORS)
-            return ModItems.SCISSORS.asItem();
+        if (has == HAS_PLIERS)
+            return ModItems.PLIERS.asItem();
         if (has == HAS_HAMMER)
             return ModItems.HAMMER.asItem();
-        throw new IllegalArgumentException("Not saw, scissors, or hammer");
+        throw new IllegalArgumentException("Not saw, pliers, or hammer");
     }
 
     protected static int getToolsMask(BlockState state){
         int mask = 0;
         if (state.getValue(HAS_SAW))
             mask |= 0b001;
-        if (state.getValue(HAS_SCISSORS))
+        if (state.getValue(HAS_PLIERS))
             mask |= 0b010;
         if (state.getValue(HAS_HAMMER))
             mask |= 0b100;
@@ -76,8 +76,8 @@ public class IncompleteCraftingTableBlock extends CraftingTableBlock {
             if (stack.is(ModItems.SAW.get())) {
                 toDo = HAS_SAW;
                 consume = true;
-            } else if (stack.is(ModItems.SCISSORS.get())) {
-                toDo = HAS_SCISSORS;
+            } else if (stack.is(ModItems.PLIERS.get())) {
+                toDo = HAS_PLIERS;
                 consume = true;
             } else if (stack.is(ModItems.HAMMER.get())){
                 toDo = HAS_HAMMER;
@@ -97,7 +97,7 @@ public class IncompleteCraftingTableBlock extends CraftingTableBlock {
 
     @Override
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        if (state.getValue(HAS_SAW) && state.getValue(HAS_SCISSORS) && state.getValue(HAS_HAMMER)){
+        if (state.getValue(HAS_SAW) && state.getValue(HAS_PLIERS) && state.getValue(HAS_HAMMER)){
             level.setBlockAndUpdate(pos, Blocks.CRAFTING_TABLE.defaultBlockState());
         }
         super.tick(state, level, pos, random);
@@ -106,7 +106,7 @@ public class IncompleteCraftingTableBlock extends CraftingTableBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(HAS_SAW)
-                .add(HAS_SCISSORS)
+                .add(HAS_PLIERS)
                 .add(HAS_HAMMER);
     }
 
@@ -115,7 +115,7 @@ public class IncompleteCraftingTableBlock extends CraftingTableBlock {
         return new SimpleMenuProvider(
                 (p_52229_, p_52230_, p_52231_) -> new IncompleteCraftingMenu(
                         p_52229_, p_52230_, ContainerLevelAccess.create(level, pos),
-                        state.getValue(HAS_SAW), state.getValue(HAS_SCISSORS), state.getValue(HAS_HAMMER)),
+                        state.getValue(HAS_SAW), state.getValue(HAS_PLIERS), state.getValue(HAS_HAMMER)),
                 CONTAINER_TITLE
         );
     }
