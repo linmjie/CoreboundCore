@@ -5,6 +5,7 @@ import com.linmjie.corebound.datagen.ModRecipeProvider;
 import com.linmjie.corebound.item.custom.LoggerItem;
 import com.linmjie.corebound.item.custom.SpearItem;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -21,7 +22,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RecipesUpdatedEvent;
@@ -79,7 +83,7 @@ public class ModEvents {
     //END VARS
 
     @SubscribeEvent
-    public static void onPlayerTickEvent(PlayerTickEvent.Pre event){
+    public static void onPlayerTickEvent(PlayerTickEvent.Pre event) {
         Player player = event.getEntity();
         ItemStack mainHandItem = player.getMainHandItem();
         if (player instanceof ServerPlayer serverPlayer) {
@@ -109,7 +113,7 @@ public class ModEvents {
     //Event for clay-till mechanic (dropping clay from shoveling tilled dirt)
     //Repeatedly right click with shovel on tilled dirt for a chance to get clayballs
     @SubscribeEvent
-    public static void onShovelUsage(UseItemOnBlockEvent event){
+    public static void onShovelUsage(UseItemOnBlockEvent event) {
         Level level = event.getLevel();
         Player player = event.getPlayer();
 

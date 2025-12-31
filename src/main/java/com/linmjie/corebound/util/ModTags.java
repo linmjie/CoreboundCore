@@ -15,6 +15,14 @@ public class ModTags {
         private static net.minecraft.tags.TagKey<Block> createTag(String name){
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(Corebound.MODID, name));
         }
+
+        //COMMON
+
+        public static final TagKey<Block> RAW_TIN_STORAGE = createCommonTag("storage_blocks/raw_tin");
+
+        private static net.minecraft.tags.TagKey<Block> createCommonTag(String name){
+            return BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
+        }
     }
 
     public static class Items {
@@ -27,6 +35,15 @@ public class ModTags {
 
         private static net.minecraft.tags.TagKey<Item> createTag(String name){
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(Corebound.MODID, name));
+        }
+
+        //COMMON
+
+        public static final TagKey<Item> RAW_MATERIALS_TIN = createCommonTag("raw_materials/tin");
+        public static final TagKey<Item> STORAGE_BLOCKS_RAW_TIN = createCommonTag("storage_blocks/raw_tin");
+
+        private static net.minecraft.tags.TagKey<Item> createCommonTag(String name){
+            return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
         }
     }
 }

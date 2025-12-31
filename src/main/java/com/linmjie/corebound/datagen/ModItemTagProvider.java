@@ -1,6 +1,7 @@
 package com.linmjie.corebound.datagen;
 
 import com.linmjie.corebound.Corebound;
+import com.linmjie.corebound.block.ModBlocks;
 import com.linmjie.corebound.item.ModItems;
 import com.linmjie.corebound.util.ModTags;
 import net.minecraft.core.HolderLookup;
@@ -8,6 +9,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nullable;
@@ -73,5 +75,14 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(Items.STONE_PICKAXE)
                 .add(Items.STONE_AXE)
                 .add(Items.STONE_SWORD);
+
+        tag(Tags.Items.RAW_MATERIALS)
+                .add(ModItems.RAW_TIN.get());
+        tag(ModTags.Items.RAW_MATERIALS_TIN)
+                .add(ModItems.RAW_TIN.get());
+        tag(ModTags.Items.STORAGE_BLOCKS_RAW_TIN)
+                .add(ModBlocks.RAW_TIN_BLOCK.asItem());
+        tag(Tags.Items.STORAGE_BLOCKS)
+                .add(ModBlocks.RAW_TIN_BLOCK.asItem());
     }
 }

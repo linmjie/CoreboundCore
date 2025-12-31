@@ -21,7 +21,9 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Corebound.MODID);
 
     public static final DeferredBlock<Block> RAW_TIN_BLOCK = registerBlock("raw_tin_block",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.AMETHYST_BLOCK)));
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_LIGHT_GRAY).instrument(NoteBlockInstrument.BASEDRUM)
+                    .requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
 
     public static final DeferredBlock<IncompleteCraftingTableBlock> INCOMPLETE_CRAFTING_TABLE = registerBlock("incomplete_crafting_table",
             () -> new IncompleteCraftingTableBlock(BlockBehaviour.Properties.of().
