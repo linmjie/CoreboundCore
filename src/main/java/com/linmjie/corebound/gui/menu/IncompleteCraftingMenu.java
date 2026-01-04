@@ -47,6 +47,7 @@ public class IncompleteCraftingMenu extends RecipeBookMenu<CraftingInput, Crafti
     private final Set<String> sawRecipes;
     private final Set<String> pliersRecipes;
     private final Set<String> hammerRecipes;
+    private final Set<String> alwaysAllow;
 
 
     public IncompleteCraftingMenu(int containerId, Inventory playerInventory) {
@@ -91,6 +92,9 @@ public class IncompleteCraftingMenu extends RecipeBookMenu<CraftingInput, Crafti
 
         hammerRecipes = new HashSet<>();
         hammerRecipes.add("corebound:cobblestone");
+
+        alwaysAllow = new HashSet<>();
+        hammerRecipes.addAll(CoreboundUtils.collectItems(ModTags.Items.UNFIRED_CRAFTING_TOOLS));
     }
 
     protected boolean validateRecipe(String resource){
@@ -103,7 +107,7 @@ public class IncompleteCraftingMenu extends RecipeBookMenu<CraftingInput, Crafti
             return true;
         if (hasHammer && hammerRecipes.contains(resource))
             return true;
-        return false;
+        return alwaysAllow.contains(resource);
     }
 
     //This method is static in the crafting menu vanilla class, otherwise I would've just overridden it

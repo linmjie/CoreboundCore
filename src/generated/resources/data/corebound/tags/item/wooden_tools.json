@@ -5,7 +5,6 @@
     "minecraft:wooden_pickaxe",
     "minecraft:wooden_axe",
     "minecraft:wooden_sword",
-    "corebound:wooden_shears",
     "corebound:sharp_stick"
   ]
 }

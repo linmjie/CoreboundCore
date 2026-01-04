@@ -32,6 +32,7 @@ import net.neoforged.neoforge.client.event.RecipesUpdatedEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.UseItemOnBlockEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.*;
@@ -138,31 +139,5 @@ public class ModEvents {
                 }
             }
         }
-    }
-
-    private static final Set<String> recipesToRemove = Set.of(
-            "minecraft:campfire",
-            "minecraft:crafting_table",
-            "minecraft:wooden_sword",
-            "minecraft:wooden_shovel",
-            "minecraft:wooden_pickaxe",
-            "minecraft:wooden_axe",
-            "minecraft:wooden_hoe",
-            "minecraft:stone_sword",
-            "minecraft:stone_shovel",
-            "minecraft:stone_pickaxe",
-            "minecraft:stone_axe",
-            "minecraft:stone_hoe"
-    );
-
-	@SubscribeEvent
-    public static void onRecipeRegistrationEvent(RecipesUpdatedEvent event) {
-        RecipeManager recipeManager = event.getRecipeManager();
-
-        var recipes = event.getRecipeManager().getRecipes().stream()
-            .filter(holder -> !recipesToRemove.contains(holder.id().toString()))
-            .collect(Collectors.toCollection(ArrayList::new));
-
-        recipeManager.replaceRecipes(recipes);
     }
 }

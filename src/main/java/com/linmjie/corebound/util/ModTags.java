@@ -32,6 +32,8 @@ public class ModTags {
         public static final TagKey<Item> ROCK_ADJACENT = createTag("rock_adjacent");
         public static final TagKey<Item> WOODEN_TOOLS = createTag("wooden_tools");
         public static final TagKey<Item> STONE_TOOLS = createTag("stone_tools");
+        public static final TagKey<Item> UNFIRED_CRAFTING_TOOLS = createTag("unfired_crafting_tools");
+        public static final TagKey<Item> CRAFTING_TOOLS = createTag("crafting_tools");
 
         private static net.minecraft.tags.TagKey<Item> createTag(String name){
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(Corebound.MODID, name));

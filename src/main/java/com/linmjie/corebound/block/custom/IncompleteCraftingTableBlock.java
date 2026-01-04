@@ -67,11 +67,6 @@ public class IncompleteCraftingTableBlock extends CraftingTableBlock {
         if (!level.isClientSide()) {
             boolean consume = false;
             BooleanProperty toDo = null;
-            if (stack.is(Items.AIR)) {
-                player.openMenu(state.getMenuProvider(level, pos));
-                player.awardStat(Stats.INTERACT_WITH_CRAFTING_TABLE);
-                return ItemInteractionResult.CONSUME;
-            }
 
             if (stack.is(ModItems.SAW.get())) {
                 toDo = HAS_SAW;
@@ -92,7 +87,7 @@ public class IncompleteCraftingTableBlock extends CraftingTableBlock {
             }
 
         }
-        return ItemInteractionResult.SUCCESS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override

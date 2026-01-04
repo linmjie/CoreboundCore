@@ -91,10 +91,10 @@ public class Corebound {
         }
     }
     // Creates a creative tab with the id "corebound:example_tab" for the example item, that is placed after the combat tab
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("corebound", () -> CreativeModeTab.builder()
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register(
+            "corebound", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.corebound")) //The language key for the title of your CreativeModeTab
-            .withTabsAfter(CreativeModeTabs.SPAWN_EGGS)
-            .icon(() -> ModItems.LOGGER_AXE.get().getDefaultInstance())
+            .icon(() -> ModItems.SHARP_STICK.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 output.accept(ModItems.RAW_TIN.get());
                 output.accept(ModBlocks.RAW_TIN_BLOCK.get());

@@ -67,7 +67,6 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(Items.WOODEN_PICKAXE)
                 .add(Items.WOODEN_AXE)
                 .add(Items.WOODEN_SWORD)
-                .add(ModItems.WOODEN_SHEARS.get())
                 .add(ModItems.SHARP_STICK.get());
         tag(ModTags.Items.STONE_TOOLS)
                 .add(Items.STONE_HOE)
@@ -75,6 +74,14 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(Items.STONE_PICKAXE)
                 .add(Items.STONE_AXE)
                 .add(Items.STONE_SWORD);
+        tag(ModTags.Items.UNFIRED_CRAFTING_TOOLS)
+                .add(ModItems.UNFIRED_SAW.get())
+                .add(ModItems.UNFIRED_PLIERS.get())
+                .add(ModItems.UNFIRED_HAMMER.get());
+        tag(ModTags.Items.CRAFTING_TOOLS)
+                .add(ModItems.SAW.get())
+                .add(ModItems.PLIERS.get())
+                .add(ModItems.HAMMER.get());
 
         tag(Tags.Items.RAW_MATERIALS)
                 .add(ModItems.RAW_TIN.get());
