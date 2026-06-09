@@ -2,6 +2,7 @@ package com.linmjie.corebound;
 
 import com.linmjie.corebound.block.ModBlockEntities;
 import com.linmjie.corebound.block.ModBlocks;
+import com.linmjie.corebound.component.ModDataComponentTypes;
 import com.linmjie.corebound.item.ModItems;
 import com.linmjie.corebound.loot.ModLootRegistries;
 import com.linmjie.corebound.screen.ModMenuTypes;
@@ -48,6 +49,7 @@ public class Corebound {
         ModBlockEntities.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
         ModItems.register(modEventBus);
+        ModDataComponentTypes.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
 
