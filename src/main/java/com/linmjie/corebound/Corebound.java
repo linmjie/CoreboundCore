@@ -37,8 +37,6 @@ public class Corebound {
     // Create a Deferred Register to hold CreativeModeTabs which will all be registered under the "corebound" namespace
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-
-
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public Corebound(IEventBus modEventBus, ModContainer modContainer) {

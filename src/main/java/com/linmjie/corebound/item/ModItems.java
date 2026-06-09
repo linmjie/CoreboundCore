@@ -1,6 +1,7 @@
 package com.linmjie.corebound.item;
 
 import com.linmjie.corebound.Corebound;
+import com.linmjie.corebound.item.custom.CanteenItem;
 import com.linmjie.corebound.item.custom.LoggerItem;
 import com.linmjie.corebound.item.custom.SpearItem;
 import com.linmjie.corebound.item.custom.TwigItem;
@@ -24,13 +25,22 @@ public class ModItems {
 
     public static final DeferredItem<Item> ROCK = ITEMS.registerSimpleItem("rock");
 
-    public static final DeferredItem<Item> UNFIRED_SAW = ITEMS.registerSimpleItem("unfired_saw");
-    public static final DeferredItem<Item> UNFIRED_PLIERS = ITEMS.registerSimpleItem("unfired_pliers");
-    public static final DeferredItem<Item> UNFIRED_HAMMER = ITEMS.registerSimpleItem("unfired_hammer");
+    public static final DeferredItem<Item> UNFIRED_SAW = ITEMS.registerSimpleItem("unfired_saw",
+            new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> UNFIRED_PLIERS = ITEMS.registerSimpleItem("unfired_pliers",
+            new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> UNFIRED_HAMMER = ITEMS.registerSimpleItem("unfired_hammer",
+            new Item.Properties().stacksTo(1));
 
-    public static final DeferredItem<Item> SAW = ITEMS.registerSimpleItem("saw");
-    public static final DeferredItem<Item> PLIERS = ITEMS.registerSimpleItem("pliers");
-    public static final DeferredItem<Item> HAMMER = ITEMS.registerSimpleItem("hammer");
+    public static final DeferredItem<Item> SAW = ITEMS.registerSimpleItem("saw",
+            new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> PLIERS = ITEMS.registerSimpleItem("pliers",
+            new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> HAMMER = ITEMS.registerSimpleItem("hammer",
+            new Item.Properties().stacksTo(1));
+
+    public static final DeferredItem<Item> CANTEEN = ITEMS.register("canteen",
+            () -> new CanteenItem(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<LoggerItem> LOGGER_AXE = ITEMS.register("logger_axe",
             () -> new LoggerItem(Tiers.IRON, new Item.Properties()
