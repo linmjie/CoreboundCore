@@ -21,4 +21,5 @@ public class ModDataComponentTypes {
 
     public static void register(IEventBus eventBus) {
         DATA_COMPONENT_TYPE.register(eventBus);
+    }
 }

@@ -109,6 +109,7 @@ public class Corebound {
                 output.accept(ModItems.SAW);
                 output.accept(ModItems.PLIERS);
                 output.accept(ModItems.HAMMER);
+                output.accept(ModItems.CANTEEN);
                 output.accept(ModBlocks.INCOMPLETE_CRAFTING_TABLE.get());
             }).build());
 
