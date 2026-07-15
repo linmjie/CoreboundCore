@@ -1,15 +1,18 @@
 package com.linmjie.corebound.item;
 
 import com.linmjie.corebound.Corebound;
+import com.linmjie.corebound.component.ModDataComponentTypes;
 import com.linmjie.corebound.item.custom.CanteenItem;
 import com.linmjie.corebound.item.custom.LoggerItem;
 import com.linmjie.corebound.item.custom.SpearItem;
 import com.linmjie.corebound.item.custom.TwigItem;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.IEventBus;
@@ -40,7 +43,12 @@ public class ModItems {
             new Item.Properties().stacksTo(1));
 
     public static final DeferredItem<Item> CANTEEN = ITEMS.register("canteen",
-            () -> new CanteenItem(new Item.Properties().stacksTo(1)));
+            () -> new CanteenItem(
+                    new Item.Properties().
+                            stacksTo(1).
+                            component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).
+                            component(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0)
+            ));
 
     public static final DeferredItem<LoggerItem> LOGGER_AXE = ITEMS.register("logger_axe",
             () -> new LoggerItem(Tiers.IRON, new Item.Properties()

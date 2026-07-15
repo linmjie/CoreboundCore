@@ -6,6 +6,10 @@ import com.linmjie.corebound.component.ModDataComponentTypes;
 import com.linmjie.corebound.item.ModItems;
 import com.linmjie.corebound.loot.ModLootRegistries;
 import com.linmjie.corebound.screen.ModMenuTypes;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -109,7 +113,13 @@ public class Corebound {
                 output.accept(ModItems.SAW);
                 output.accept(ModItems.PLIERS);
                 output.accept(ModItems.HAMMER);
+
                 output.accept(ModItems.CANTEEN);
+                ItemStack testerCanteen = new ItemStack(ModItems.CANTEEN.get());
+                testerCanteen.set(DataComponents.POTION_CONTENTS, new PotionContents(Potions.FIRE_RESISTANCE));
+                testerCanteen.set(ModDataComponentTypes.CANTEEN_POTION_COUNT, 9);
+                output.accept(testerCanteen);
+
                 output.accept(ModBlocks.INCOMPLETE_CRAFTING_TABLE.get());
             }).build());
 

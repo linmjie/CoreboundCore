@@ -15,11 +15,15 @@
   "item.corebound.saw": "Saw",
   "item.corebound.pliers": "Pliers",
   "item.corebound.hammer": "Hammer",
+  "item.corebound.canteen": "Canteen",
 
   "tag.item.corebound.rocks_replace": "Rocks Replace",
   "tag.item.corebound.non_stripped_logs_that_burn": "Burnable Logs",
   "tag.item.corebound.stripped_logs_that_burn": "Burnable Stripped Logs",
   "tag.item.corebound.rock_adjacent": "Rock Adjacent",
+
+  "tooltip.corebound.canteen_potion_count_tooltip": "Drinks remaining: %s/%s",
+  "tooltip.corebound.canteen_empty_tooltip":  "Empty",
 
   "container.incomplete_crafting": "Limited Crafting",
 
