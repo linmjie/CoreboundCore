@@ -15,7 +15,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.Level;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,22 +26,22 @@ public class CanteenItem extends Item {
         super(properties);
     }
 
-    public static ItemStack decrementCanteenContents(ItemStack stack) {
+    public static void decrementCanteenContents(ItemStack stack) {
         int count = stack.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
         if (count <= 0) {
             Corebound.LOGGER.warn("Decremented canteen contents even though they either don't exist or when empty");
             stack.set(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
-            return stack;
+            return;
         }
         if (count == 1) {
             stack.set(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
         }
         stack.set(ModDataComponentTypes.CANTEEN_POTION_COUNT, count - 1);
-        return stack;
     }
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entityLiving) {
+        boolean hasInfiniteMaterials = entityLiving.hasInfiniteMaterials();
         Player player = entityLiving instanceof Player ? (Player)entityLiving : null;
         if (player instanceof ServerPlayer serverplayer) {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverplayer, stack);
@@ -53,12 +52,14 @@ public class CanteenItem extends Item {
             PotionContents potioncontents = stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
             potioncontents.forEachEffect((effect) -> {
                 if (effect.getEffect().value().isInstantenous()) {
-                    effect.getEffect().value().applyInstantenousEffect(player, player, entityLiving, effect.getAmplifier(), (double)1.0F);
+                    effect.getEffect().value().applyInstantenousEffect(player, player, entityLiving, effect.getAmplifier(), 1.0);
                 } else {
                     entityLiving.addEffect(effect);
                 }
             });
-            decrementCanteenContents(stack);
+            if (!hasInfiniteMaterials) {
+                decrementCanteenContents(stack);
+            }
         }
         return stack;
     }
@@ -80,7 +81,6 @@ public class CanteenItem extends Item {
         if (stack.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0) > 0) {
             return ItemUtils.startUsingInstantly(level, player, hand);
         }
-        Corebound.LOGGER.info("Can't use canteen");
         return super.use(level, player, hand);
     }
 
