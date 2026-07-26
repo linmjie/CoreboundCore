@@ -3,11 +3,11 @@ package com.linmjie.corebound.item.custom;
 import com.linmjie.corebound.Corebound;
 import com.linmjie.corebound.component.ModDataComponentTypes;
 import com.linmjie.corebound.fluid.CanteenFluidHandler;
+import com.linmjie.corebound.item.ModItems;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
-import com.simibubi.create.foundation.fluid.FluidHelper;
-import mixin.ItemDrainAccessor;
+import com.linmjie.corebound.mixin.acccessors.ItemDrainAccessor;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -16,7 +16,6 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -31,22 +30,17 @@ import java.util.Objects;
 public class CanteenItem extends Item {
     private static final int DRINK_DURATION = 32;
     public static final int MAX_CAPACITY = 16;
+    public static final int ONE_FILL_VOLUME = 250; //mb
 
     public CanteenItem(Properties properties) {
         super(properties);
     }
 
-    public static void decrementCanteenContents(ItemStack stack) {
-        int count = stack.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
-        if (count <= 0) {
-            Corebound.LOGGER.warn("Decremented canteen contents even though they either don't exist or when empty");
-            stack.set(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
-            return;
-        }
-        if (count == 1) {
-            stack.set(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
-        }
-        stack.set(ModDataComponentTypes.CANTEEN_POTION_COUNT, count - 1);
+    public static ItemStack getDefaultCanteen() {
+        ItemStack canteen = new ItemStack(ModItems.CANTEEN.get());
+        canteen.set(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
+        canteen.set(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
+        return canteen;
     }
 
     @Override
@@ -68,7 +62,7 @@ public class CanteenItem extends Item {
                 }
             });
             if (!hasInfiniteMaterials) {
-                decrementCanteenContents(stack);
+                CanteenFluidHandler.drainCanteen(stack);
             }
         }
         return stack;

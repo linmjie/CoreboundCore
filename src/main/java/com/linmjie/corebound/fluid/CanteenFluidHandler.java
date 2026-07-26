@@ -3,6 +3,7 @@ package com.linmjie.corebound.fluid;
 import com.linmjie.corebound.Corebound;
 import com.linmjie.corebound.component.ModDataComponentTypes;
 import com.linmjie.corebound.item.ModItems;
+import com.linmjie.corebound.item.custom.CanteenItem;
 import com.simibubi.create.AllDataComponents;
 import com.simibubi.create.AllFluids;
 import com.simibubi.create.AllItems;
@@ -17,7 +18,6 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
@@ -30,8 +30,6 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 // Utility Class
 // Consolidation of FluidHelper, GenericItemEmptying, and PotionFluidHandler utility classes for canteens specifically (+some static methods of PotionFluid)
 public class CanteenFluidHandler {
-    public static int ONE_FILL_VOLUME = 250;
-
     public static boolean tryEmptyItemIntoBE(Level worldIn,
                                              Player player,
                                              InteractionHand handIn,
@@ -68,7 +66,7 @@ public class CanteenFluidHandler {
         ItemStack copy =  stack.copy();
         int count = stack.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
         if (!simulate)
-            copy.set(ModDataComponentTypes.CANTEEN_POTION_COUNT, count - 1);
+            drainCanteen(copy);
         return Pair.of(fluid, copy);
     }
 
@@ -115,9 +113,7 @@ public class CanteenFluidHandler {
             FluidStack fluid = capability.getFluidInTank(i);
             if (fluid.isEmpty())
                 continue;
-            int requiredAmountForItem = ONE_FILL_VOLUME;
-            if (requiredAmountForItem == -1)
-                continue;
+            int requiredAmountForItem = CanteenItem.ONE_FILL_VOLUME;
             if (requiredAmountForItem > fluid.getAmount())
                 continue;
 
@@ -142,6 +138,8 @@ public class CanteenFluidHandler {
         return false;
     }
 
+    // fillItem not to be confused with fillCanteen lol
+    // I'm copying some Create method names across different levels of abstraction so...
     public static Pair<ItemStack, Boolean> fillItem(Level world, int requiredAmount, ItemStack stack, FluidStack availableFluid) {
         FluidStack toFill = availableFluid.copy();
         PotionContents contents = availableFluid.get(DataComponents.POTION_CONTENTS);
@@ -157,7 +155,7 @@ public class CanteenFluidHandler {
             didFill = attemptFill(stack, contents);
         }
 
-        Corebound.LOGGER.info("didFill: " + didFill);
+        //Corebound.LOGGER.info("didFill: " + didFill);
         return Pair.of(stack, didFill);
     }
 
@@ -180,5 +178,52 @@ public class CanteenFluidHandler {
         }
         // Corebound.LOGGER.info("attempted fill with different potion contents between canteen and container");
         return false;
+    }
+
+    // fillCanteen not to be confused with fillItem lol
+    // I'm copying some Create method names across different levels of abstraction so...
+    // This assumes that the potion contents of the canteen stack (first arg) and the PotionContents (second arg) are the same
+    public static void fillCanteen(ItemStack stack, PotionContents potionContents) {
+        PotionContents contents = stack.get(DataComponents.POTION_CONTENTS);
+        assert contents != null;
+        if (contents == PotionContents.EMPTY) {
+            stack.set(DataComponents.POTION_CONTENTS, potionContents);
+            stack.set(ModDataComponentTypes.CANTEEN_POTION_COUNT, 1);
+        } else {
+            assert contents.equals(potionContents);
+            int canteenFill = stack.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
+            if (canteenFill < CanteenItem.MAX_CAPACITY) {
+                stack.set(ModDataComponentTypes.CANTEEN_POTION_COUNT, canteenFill + 1);
+            }
+        }
+    }
+
+    public static void drainCanteen(ItemStack stack) {
+        int count = stack.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
+        if (count <= 0) {
+            Corebound.LOGGER.warn("Decremented canteen contents even though they either don't exist or when empty");
+            stack.set(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
+            return;
+        }
+        if (count == 1) {
+            stack.set(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
+        }
+        stack.set(ModDataComponentTypes.CANTEEN_POTION_COUNT, count - 1);
+    }
+
+    public static boolean canFillCanteen(ItemStack canteen, FluidStack fluid) {
+        int canteenFill = canteen.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
+        boolean canteenNotFull = canteenFill < CanteenItem.MAX_CAPACITY;
+        boolean potionContentsMatch = false;
+        if (canteenFill > 0) {
+            PotionContents canteenContents = canteen.get(DataComponents.POTION_CONTENTS);
+            PotionContents availableFluidContents = fluid.get(DataComponents.POTION_CONTENTS);
+            assert canteenContents != null;
+            potionContentsMatch = canteenContents.equals(availableFluidContents);
+        } else {
+            assert canteenFill == 0;
+            potionContentsMatch = true;
+        }
+        return canteenNotFull && potionContentsMatch;
     }
 }

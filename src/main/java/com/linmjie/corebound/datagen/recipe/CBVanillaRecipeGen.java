@@ -1,4 +1,4 @@
-package com.linmjie.corebound.datagen;
+package com.linmjie.corebound.datagen.recipe;
 
 import com.linmjie.corebound.Corebound;
 import com.linmjie.corebound.block.ModBlocks;
@@ -19,8 +19,8 @@ import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
-    public ModRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuilder {
+    public CBVanillaRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);
     }
 

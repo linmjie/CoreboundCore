@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.linmjie.corebound.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "acccessors.ItemDrainAccessor",
+    "GenericItemFillingMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

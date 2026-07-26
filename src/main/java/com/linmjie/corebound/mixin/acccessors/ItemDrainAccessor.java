@@ -1,4 +1,4 @@
-package mixin;
+package com.linmjie.corebound.mixin.acccessors;
 
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
