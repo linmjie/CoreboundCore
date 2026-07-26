@@ -1,6 +1,5 @@
 package com.linmjie.corebound.item.custom;
 
-import com.linmjie.corebound.Corebound;
 import com.linmjie.corebound.component.ModDataComponentTypes;
 import com.linmjie.corebound.fluid.CanteenFluidHandler;
 import com.linmjie.corebound.item.ModItems;

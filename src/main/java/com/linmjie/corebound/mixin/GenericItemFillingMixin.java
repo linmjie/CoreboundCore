@@ -1,6 +1,5 @@
 package com.linmjie.corebound.mixin;
 
-import com.linmjie.corebound.Corebound;
 import com.linmjie.corebound.fluid.CanteenFluidHandler;
 import com.linmjie.corebound.item.ModItems;
 import com.linmjie.corebound.item.custom.CanteenItem;
@@ -21,7 +20,6 @@ public abstract class GenericItemFillingMixin {
     private static void addCanteenToCanBeFilled(Level world, ItemStack stack,
                                                CallbackInfoReturnable<Boolean> cir)
     {
-        Corebound.LOGGER.info("addCanteenToCanBeFilled mixin worked");
         if (stack.getItem() == ModItems.CANTEEN.get()) {
             cir.setReturnValue(true);
         }
@@ -31,7 +29,6 @@ public abstract class GenericItemFillingMixin {
     private static void addCanteenRequiredFluid(Level world, ItemStack stack, FluidStack availableFluid,
                                                CallbackInfoReturnable<Integer> cir)
     {
-        Corebound.LOGGER.info("getRequiredAmountForItem mixin worked");
         if (stack.getItem() == ModItems.CANTEEN.get()
             && CanteenFluidHandler.canFillCanteen(stack, availableFluid))
         {
@@ -50,7 +47,6 @@ public abstract class GenericItemFillingMixin {
     private static void addCanteenFillBehavior(Level world, int requiredAmount, ItemStack stack, FluidStack availableFluid,
                                               CallbackInfoReturnable<ItemStack> cir)
     {
-        Corebound.LOGGER.info("addCanteenFillBehavior mixin worked");
         if (stack.getItem() == ModItems.CANTEEN.get()
             && CanteenFluidHandler.canFillCanteen(stack, availableFluid))
         {
