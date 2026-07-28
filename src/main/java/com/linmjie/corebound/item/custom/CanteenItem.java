@@ -1,5 +1,6 @@
 package com.linmjie.corebound.item.custom;
 
+import com.linmjie.corebound.Corebound;
 import com.linmjie.corebound.component.ModDataComponentTypes;
 import com.linmjie.corebound.fluid.CanteenFluidHandler;
 import com.linmjie.corebound.item.ModItems;
@@ -97,6 +98,7 @@ public class CanteenItem extends Item {
             BlockEntity be = level.getBlockEntity(context.getClickedPos());
             if (be instanceof BasinBlockEntity basin) {
                 // can withdraw and deposit potion effects
+                Corebound.LOGGER.info("enter basin interaction via item");
                 if (CanteenFluidHandler.tryFillItemFromBE(level, player, hand, stack, basin))
                     return InteractionResult.SUCCESS;
                 if (CanteenFluidHandler.tryEmptyItemIntoBE(level, player, hand, stack, basin))
@@ -104,13 +106,12 @@ public class CanteenItem extends Item {
             // getting an item drain from the blockpos of the item drain apparently does not work so......
             } else if (be instanceof ItemDrainBlockEntity drain) {
                 // can only deposit potion effects
+                // some mixin accessor because the tank is package-private
                 SmartFluidTankBehaviour tank = ((ItemDrainAccessor) drain).getInternalTank();
                 tank.allowInsertion();
                 boolean canEmpty = CanteenFluidHandler.tryEmptyItemIntoBE(level, player, hand, stack, drain);
                 tank.forbidInsertion();
-                if (canEmpty) {
-                    return InteractionResult.SUCCESS;
-                }
+                if (canEmpty) return InteractionResult.SUCCESS;
             }
         }
         return super.useOn(context);

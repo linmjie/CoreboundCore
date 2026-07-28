@@ -15,6 +15,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
@@ -59,7 +60,7 @@ public class CanteenFluidHandler {
     }
 
     public static Pair<FluidStack, ItemStack> emptyItem(Level level, ItemStack stack, boolean simulate) {
-        FluidStack fluid = getFluidFromPotionItem(stack);
+        FluidStack fluid = getFluidFromCanteenItem(stack);
         ItemStack copy =  stack.copy();
         int count = stack.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
         if (!simulate)
@@ -67,16 +68,16 @@ public class CanteenFluidHandler {
         return Pair.of(fluid, copy);
     }
 
-    public static FluidStack getFluidFromPotionItem(ItemStack stack) {
+    public static FluidStack getFluidFromCanteenItem(ItemStack stack) {
         PotionContents potion = stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
         if (potion.is(Potions.WATER) && potion.customEffects().isEmpty())
             return new FluidStack(Fluids.WATER, 250);
-        FluidStack fluid = getFluidFromPotion(potion,250);
+        FluidStack fluid = getFluidFromCanteen(potion,250);
         fluid.set(AllDataComponents.POTION_FLUID_BOTTLE_TYPE, PotionFluid.BottleType.REGULAR); // not sure if this is necessary
         return fluid;
     }
 
-    public static FluidStack getFluidFromPotion(PotionContents potionContents, int amount) {
+    public static FluidStack getFluidFromCanteen(PotionContents potionContents, int amount) {
         if (potionContents.is(Potions.WATER))
             return new FluidStack(Fluids.WATER, amount);
         return addPotionToFluidStack(amount, potionContents);
@@ -175,6 +176,15 @@ public class CanteenFluidHandler {
         }
         // Corebound.LOGGER.info("attempted fill with different potion contents between canteen and container");
         return false;
+    }
+
+    public static Pair<FluidStack, ItemStack> emptyCanteen(ItemStack stack, boolean simulate) {
+        FluidStack fluid = getFluidFromCanteenItem(stack);
+        ItemStack copy =  stack.copy();
+        drainCanteen(copy);
+        if (!simulate)
+            stack.shrink(1);
+        return Pair.of(fluid, copy);
     }
 
     // fillCanteen not to be confused with fillItem lol
