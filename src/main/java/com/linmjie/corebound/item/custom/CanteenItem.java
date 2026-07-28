@@ -88,36 +88,6 @@ public class CanteenItem extends Item {
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext context) {
-        Level level = context.getLevel();
-        if (!level.isClientSide) {
-            ItemStack stack = context.getItemInHand();
-            assert !stack.isEmpty();
-            Player player =  context.getPlayer();
-            InteractionHand hand = context.getHand();
-            BlockEntity be = level.getBlockEntity(context.getClickedPos());
-            if (be instanceof BasinBlockEntity basin) {
-                // can withdraw and deposit potion effects
-                Corebound.LOGGER.info("enter basin interaction via item");
-                if (CanteenFluidHandler.tryFillItemFromBE(level, player, hand, stack, basin))
-                    return InteractionResult.SUCCESS;
-                if (CanteenFluidHandler.tryEmptyItemIntoBE(level, player, hand, stack, basin))
-                    return InteractionResult.SUCCESS;
-            // getting an item drain from the blockpos of the item drain apparently does not work so......
-            } else if (be instanceof ItemDrainBlockEntity drain) {
-                // can only deposit potion effects
-                // some mixin accessor because the tank is package-private
-                SmartFluidTankBehaviour tank = ((ItemDrainAccessor) drain).getInternalTank();
-                tank.allowInsertion();
-                boolean canEmpty = CanteenFluidHandler.tryEmptyItemIntoBE(level, player, hand, stack, drain);
-                tank.forbidInsertion();
-                if (canEmpty) return InteractionResult.SUCCESS;
-            }
-        }
-        return super.useOn(context);
-    }
-
-    @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
         PotionContents potioncontents = stack.get(DataComponents.POTION_CONTENTS);

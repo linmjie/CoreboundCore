@@ -7,6 +7,7 @@ import com.linmjie.corebound.item.custom.CanteenItem;
 import com.simibubi.create.AllDataComponents;
 import com.simibubi.create.AllFluids;
 import com.simibubi.create.content.fluids.potion.PotionFluid;
+import com.simibubi.create.content.fluids.potion.PotionFluidHandler;
 import com.simibubi.create.content.fluids.tank.CreativeFluidTankBlockEntity;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.fluid.FluidHelper;
@@ -26,156 +27,14 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 // Utility Class
-// Consolidation of FluidHelper, GenericItemEmptying, and PotionFluidHandler utility classes for canteens specifically (+some static methods of PotionFluid)
 public class CanteenFluidHandler {
-    public static boolean tryEmptyItemIntoBE(Level worldIn,
-                                             Player player,
-                                             InteractionHand handIn,
-                                             ItemStack heldItem,
-                                             SmartBlockEntity be
-    ) {
-        assert heldItem.is(ModItems.CANTEEN);
-        if (heldItem.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0) <= 0) {
-            return false;
-        }
-
-        Pair<FluidStack, ItemStack> emptyingResult = emptyItem(worldIn, heldItem, true);
-        IFluidHandler capability = worldIn.getCapability(Capabilities.FluidHandler.BLOCK, be.getBlockPos(), null);
-        FluidStack fluidStack = emptyingResult.getFirst();
-
-        if (capability == null || fluidStack.getAmount() != capability.fill(fluidStack, IFluidHandler.FluidAction.SIMULATE)) {
-            return false;
-        }
-        if (worldIn.isClientSide)
-            return true;
-
-        ItemStack copyOfHeld = heldItem.copy();
-        emptyingResult = emptyItem(worldIn, copyOfHeld, false);
-        capability.fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
-
-        if (!player.isCreative() && !(be instanceof CreativeFluidTankBlockEntity)) {
-            player.setItemInHand(handIn, emptyingResult.getSecond());
-        }
-        return true;
-    }
-
-    public static Pair<FluidStack, ItemStack> emptyItem(Level level, ItemStack stack, boolean simulate) {
-        FluidStack fluid = getFluidFromCanteenItem(stack);
-        ItemStack copy =  stack.copy();
-        int count = stack.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
-        if (!simulate)
-            drainCanteen(copy);
-        return Pair.of(fluid, copy);
-    }
-
     public static FluidStack getFluidFromCanteenItem(ItemStack stack) {
         PotionContents potion = stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
         if (potion.is(Potions.WATER) && potion.customEffects().isEmpty())
             return new FluidStack(Fluids.WATER, 250);
-        FluidStack fluid = getFluidFromCanteen(potion,250);
+        FluidStack fluid = PotionFluidHandler.getFluidFromPotion(potion, PotionFluid.BottleType.REGULAR, 250);
         fluid.set(AllDataComponents.POTION_FLUID_BOTTLE_TYPE, PotionFluid.BottleType.REGULAR); // not sure if this is necessary
         return fluid;
-    }
-
-    public static FluidStack getFluidFromCanteen(PotionContents potionContents, int amount) {
-        if (potionContents.is(Potions.WATER))
-            return new FluidStack(Fluids.WATER, amount);
-        return addPotionToFluidStack(amount, potionContents);
-    }
-
-    public static FluidStack addPotionToFluidStack(int amount, PotionContents potionContents) {
-        FluidStack fluidStack;
-        fluidStack = new FluidStack(AllFluids.POTION.get().getSource(), amount);
-        if (potionContents == PotionContents.EMPTY) {
-            fluidStack.remove(DataComponents.POTION_CONTENTS);
-            return fluidStack;
-        }
-        fluidStack.set(DataComponents.POTION_CONTENTS, potionContents);
-        return fluidStack;
-    }
-
-    public static boolean tryFillItemFromBE(Level world,
-                                            Player player,
-                                            InteractionHand handIn,
-                                            ItemStack heldItem,
-                                            SmartBlockEntity be
-    ) {
-        assert heldItem.is(ModItems.CANTEEN);
-
-        IFluidHandler capability = world.getCapability(Capabilities.FluidHandler.BLOCK, be.getBlockPos(), null);
-
-        if (capability == null)
-            return false;
-
-        for (int i = 0; i < capability.getTanks(); i++) {
-            FluidStack fluid = capability.getFluidInTank(i);
-            if (fluid.isEmpty())
-                continue;
-            int requiredAmountForItem = CanteenItem.ONE_FILL_VOLUME;
-            if (requiredAmountForItem > fluid.getAmount())
-                continue;
-
-            if (world.isClientSide)
-                return true;
-
-            if (player.isCreative() || be instanceof CreativeFluidTankBlockEntity)
-                heldItem = heldItem.copy();
-            Pair<ItemStack, Boolean> out = fillItem(world, requiredAmountForItem, heldItem, fluid.copy());
-
-            FluidStack copy = fluid.copy();
-            copy.setAmount(requiredAmountForItem);
-            if (out.getSecond()) {
-                capability.drain(copy, IFluidHandler.FluidAction.EXECUTE);
-            }
-
-            if (!player.isCreative())
-                player.setItemInHand(handIn, out.getFirst());
-            be.notifyUpdate();
-            return true;
-        }
-        return false;
-    }
-
-    // fillItem not to be confused with fillCanteen lol
-    // I'm copying some Create method names across different levels of abstraction so...
-    public static Pair<ItemStack, Boolean> fillItem(Level world, int requiredAmount, ItemStack stack, FluidStack availableFluid) {
-        FluidStack toFill = availableFluid.copy();
-        PotionContents contents = availableFluid.get(DataComponents.POTION_CONTENTS);
-        boolean didFill = true;
-        toFill.setAmount(requiredAmount);
-        availableFluid.shrink(requiredAmount);
-
-        Fluid fluid = toFill.getFluid();
-        if (FluidHelper.isWater(fluid)) {
-            Corebound.LOGGER.info("attempted fill with water");
-        }
-        else if (contents != PotionContents.EMPTY) {
-            didFill = attemptFill(stack, contents);
-        }
-
-        //Corebound.LOGGER.info("didFill: " + didFill);
-        return Pair.of(stack, didFill);
-    }
-
-    public static boolean attemptFill(ItemStack canteen, PotionContents potionContents) {
-        // Some funky stuff with pass by ref but it doesn't seem to break anything so I'm keeping it
-        assert potionContents != PotionContents.EMPTY;
-        if (canteen.get(DataComponents.POTION_CONTENTS).equals(PotionContents.EMPTY)) {
-            // Corebound.LOGGER.info("attempted fill with empty");
-            canteen.set(DataComponents.POTION_CONTENTS, potionContents);
-            canteen.set(ModDataComponentTypes.CANTEEN_POTION_COUNT, 1);
-            return true;
-        } else if (canteen.get(DataComponents.POTION_CONTENTS).equals(potionContents)) {
-            // Corebound.LOGGER.info("attempted fill with matching container and canteen potion contents");
-            int currentCount = canteen.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
-            if (currentCount >= 16) {
-                return false;
-            }
-            canteen.set(ModDataComponentTypes.CANTEEN_POTION_COUNT, currentCount + 1);
-            return true;
-        }
-        // Corebound.LOGGER.info("attempted fill with different potion contents between canteen and container");
-        return false;
     }
 
     public static Pair<FluidStack, ItemStack> emptyCanteen(ItemStack stack, boolean simulate) {
@@ -187,8 +46,6 @@ public class CanteenFluidHandler {
         return Pair.of(fluid, copy);
     }
 
-    // fillCanteen not to be confused with fillItem lol
-    // I'm copying some Create method names across different levels of abstraction so...
     // This assumes that the potion contents of the canteen stack (first arg) and the PotionContents (second arg) are the same
     public static void fillCanteen(ItemStack stack, PotionContents potionContents) {
         PotionContents contents = stack.get(DataComponents.POTION_CONTENTS);
