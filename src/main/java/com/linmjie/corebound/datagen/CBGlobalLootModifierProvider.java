@@ -1,11 +1,11 @@
 package com.linmjie.corebound.datagen;
 
 import com.linmjie.corebound.Corebound;
-import com.linmjie.corebound.item.ModItems;
+import com.linmjie.corebound.item.CBItems;
 import com.linmjie.corebound.loot.AddItemModifier;
 import com.linmjie.corebound.loot.LootItemBlockTagPropertyCondition;
 import com.linmjie.corebound.loot.RemoveItemTagModifier;
-import com.linmjie.corebound.util.ModTags;
+import com.linmjie.corebound.util.CBTags;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -28,20 +28,20 @@ public class CBGlobalLootModifierProvider extends GlobalLootModifierProvider {
         this.add("leaves_to_twigs",
                 new AddItemModifier(new LootItemCondition[]{
                         LootItemBlockTagPropertyCondition.matchesBlockTag(BlockTags.LEAVES).build(),
-                        MatchTool.toolMatches(ItemPredicate.Builder.item().of(ModItems.WOODEN_SHEARS)).build(),
+                        MatchTool.toolMatches(ItemPredicate.Builder.item().of(CBItems.WOODEN_SHEARS)).build(),
                         LootItemRandomChanceCondition.randomChance(1f).build() },
-                        ModItems.TWIG.get()));
+                        CBItems.TWIG.get()));
         this.add("rocks_from_cobblestone",
                 new AddItemModifier(new LootItemCondition[]{
-                        LootItemBlockTagPropertyCondition.matchesBlockTag(ModTags.Blocks.DROPS_ROCKS).build(),
+                        LootItemBlockTagPropertyCondition.matchesBlockTag(CBTags.Blocks.DROPS_ROCKS).build(),
                         MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.WOODEN_PICKAXE)).build(),
                         LootItemRandomChanceCondition.randomChance(1f).build() },
-                        ModItems.ROCK.get(), 2, 5));
+                        CBItems.ROCK.get(), 2, 5));
         this.add("remove_cobblestone_like_drops_from_cobblestone",
                 new RemoveItemTagModifier(new LootItemCondition[]{
-                        LootItemBlockTagPropertyCondition.matchesBlockTag(ModTags.Blocks.DROPS_ROCKS).build(),
+                        LootItemBlockTagPropertyCondition.matchesBlockTag(CBTags.Blocks.DROPS_ROCKS).build(),
                         MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.WOODEN_PICKAXE)).build(),
                         LootItemRandomChanceCondition.randomChance(1f).build() },
-                        ModTags.Items.ROCKS_REPLACE));
+                        CBTags.Items.ROCKS_REPLACE));
     }
 }

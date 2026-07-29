@@ -1,9 +1,9 @@
 package com.linmjie.corebound.datagen;
 
 import com.linmjie.corebound.Corebound;
-import com.linmjie.corebound.block.ModBlocks;
-import com.linmjie.corebound.item.ModItems;
-import com.linmjie.corebound.util.ModTags;
+import com.linmjie.corebound.block.CBBlocks;
+import com.linmjie.corebound.item.CBItems;
+import com.linmjie.corebound.util.CBTags;
 import com.simibubi.create.AllTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -24,7 +24,7 @@ public class CBItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(ModTags.Items.NON_STRIPPED_LOGS_THAT_BURN)
+        tag(CBTags.Items.NON_STRIPPED_LOGS_THAT_BURN)
                 .add(Items.OAK_LOG)
                 .add(Items.ACACIA_LOG)
                 .add(Items.BIRCH_LOG)
@@ -43,7 +43,7 @@ public class CBItemTagProvider extends ItemTagsProvider {
                 .add(Items.MANGROVE_WOOD)
                 .add(Items.CHERRY_WOOD)
                 .add(Items.SPRUCE_WOOD);
-        tag(ModTags.Items.STRIPPED_LOGS_THAT_BURN)
+        tag(CBTags.Items.STRIPPED_LOGS_THAT_BURN)
                 .add(Items.STRIPPED_OAK_LOG)
                 .add(Items.STRIPPED_ACACIA_LOG)
                 .add(Items.STRIPPED_BIRCH_LOG)
@@ -53,49 +53,49 @@ public class CBItemTagProvider extends ItemTagsProvider {
                 .add(Items.STRIPPED_MANGROVE_LOG)
                 .add(Items.STRIPPED_CHERRY_LOG)
                 .add(Items.STRIPPED_SPRUCE_LOG);
-        tag(ModTags.Items.ROCK_ADJACENT)
+        tag(CBTags.Items.ROCK_ADJACENT)
                 .add(Items.FLINT)
-                .add(ModItems.ROCK.get());
-        tag(ModTags.Items.ROCKS_REPLACE)
+                .add(CBItems.ROCK.get());
+        tag(CBTags.Items.ROCKS_REPLACE)
                 .add(Items.COBBLESTONE)
                 .add(Items.COBBLED_DEEPSLATE)
                 .add(Items.STONE)
                 .add(Items.DEEPSLATE)
                 .add(Items.BLACKSTONE);
-        tag(ModTags.Items.WOODEN_TOOLS)
+        tag(CBTags.Items.WOODEN_TOOLS)
                 .add(Items.WOODEN_HOE)
                 .add(Items.WOODEN_SHOVEL)
                 .add(Items.WOODEN_PICKAXE)
                 .add(Items.WOODEN_AXE)
                 .add(Items.WOODEN_SWORD)
-                .add(ModItems.SHARP_STICK.get());
-        tag(ModTags.Items.STONE_TOOLS)
+                .add(CBItems.SHARP_STICK.get());
+        tag(CBTags.Items.STONE_TOOLS)
                 .add(Items.STONE_HOE)
                 .add(Items.STONE_SHOVEL)
                 .add(Items.STONE_PICKAXE)
                 .add(Items.STONE_AXE)
                 .add(Items.STONE_SWORD);
-        tag(ModTags.Items.UNFIRED_CRAFTING_TOOLS)
-                .add(ModItems.UNFIRED_SAW.get())
-                .add(ModItems.UNFIRED_PLIERS.get())
-                .add(ModItems.UNFIRED_HAMMER.get());
-        tag(ModTags.Items.CRAFTING_TOOLS)
-                .add(ModItems.SAW.get())
-                .add(ModItems.PLIERS.get())
-                .add(ModItems.HAMMER.get());
+        tag(CBTags.Items.UNFIRED_CRAFTING_TOOLS)
+                .add(CBItems.UNFIRED_SAW.get())
+                .add(CBItems.UNFIRED_PLIERS.get())
+                .add(CBItems.UNFIRED_HAMMER.get());
+        tag(CBTags.Items.CRAFTING_TOOLS)
+                .add(CBItems.SAW.get())
+                .add(CBItems.PLIERS.get())
+                .add(CBItems.HAMMER.get());
 
         tag(AllTags.AllItemTags.DEPLOYABLE_DRINK.tag)
-                .add(ModItems.CANTEEN.get());
+                .add(CBItems.CANTEEN.get());
         tag(AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
-                .add(ModItems.CANTEEN.get());
+                .add(CBItems.CANTEEN.get());
 
         tag(Tags.Items.RAW_MATERIALS)
-                .add(ModItems.RAW_TIN.get());
-        tag(ModTags.Items.RAW_MATERIALS_TIN)
-                .add(ModItems.RAW_TIN.get());
-        tag(ModTags.Items.STORAGE_BLOCKS_RAW_TIN)
-                .add(ModBlocks.RAW_TIN_BLOCK.asItem());
+                .add(CBItems.RAW_TIN.get());
+        tag(CBTags.Items.RAW_MATERIALS_TIN)
+                .add(CBItems.RAW_TIN.get());
+        tag(CBTags.Items.STORAGE_BLOCKS_RAW_TIN)
+                .add(CBBlocks.RAW_TIN_BLOCK.asItem());
         tag(Tags.Items.STORAGE_BLOCKS)
-                .add(ModBlocks.RAW_TIN_BLOCK.asItem());
+                .add(CBBlocks.RAW_TIN_BLOCK.asItem());
     }
 }

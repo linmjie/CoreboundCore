@@ -1,7 +1,7 @@
 package com.linmjie.corebound.datagen;
 
 import com.linmjie.corebound.Corebound;
-import com.linmjie.corebound.block.ModBlocks;
+import com.linmjie.corebound.block.CBBlocks;
 import com.linmjie.corebound.block.custom.IncompleteCraftingTableBlock;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -19,12 +19,12 @@ public class CBBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        blockWithItem(ModBlocks.RAW_TIN_BLOCK);
-        incompleteCraftingTable(ModBlocks.INCOMPLETE_CRAFTING_TABLE,
+        blockWithItem(CBBlocks.RAW_TIN_BLOCK);
+        incompleteCraftingTable(CBBlocks.INCOMPLETE_CRAFTING_TABLE,
                 "top", "bottom", "side_pli",
                 "front_ham", "front_saw", "front_saw_ham",
                 "blank");
-        blockItem(ModBlocks.INCOMPLETE_CRAFTING_TABLE);
+        blockItem(CBBlocks.INCOMPLETE_CRAFTING_TABLE);
     }
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {

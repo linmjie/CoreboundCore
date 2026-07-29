@@ -8,7 +8,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
-public class ModTags {
+public class CBTags {
     public static class Blocks {
         public static final TagKey<Block> DROPS_ROCKS = createTag("drops_rocks");
 

@@ -2,11 +2,10 @@ package com.linmjie.corebound.block;
 
 import com.linmjie.corebound.Corebound;
 import com.linmjie.corebound.block.custom.IncompleteCraftingTableBlock;
-import com.linmjie.corebound.item.ModItems;
+import com.linmjie.corebound.item.CBItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -17,7 +16,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
-public class ModBlocks {
+public class CBBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Corebound.MODID);
 
     public static final DeferredBlock<Block> RAW_TIN_BLOCK = registerBlock("raw_tin_block",
@@ -36,7 +35,7 @@ public class ModBlocks {
     }
 
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block){
-        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        CBItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
     public static void register (IEventBus eventBus){

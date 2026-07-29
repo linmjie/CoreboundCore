@@ -1,7 +1,7 @@
 package com.linmjie.corebound.mixin;
 
 import com.linmjie.corebound.fluid.CanteenFluidHandler;
-import com.linmjie.corebound.item.ModItems;
+import com.linmjie.corebound.item.CBItems;
 import com.linmjie.corebound.item.custom.CanteenItem;
 import com.simibubi.create.content.fluids.transfer.GenericItemFilling;
 import net.minecraft.core.component.DataComponents;
@@ -20,7 +20,7 @@ public abstract class GenericItemFillingMixin {
     private static void addCanteenToCanBeFilled(Level world, ItemStack stack,
                                                CallbackInfoReturnable<Boolean> cir)
     {
-        if (stack.getItem() == ModItems.CANTEEN.get()) {
+        if (stack.getItem() == CBItems.CANTEEN.get()) {
             cir.setReturnValue(true);
         }
     }
@@ -29,7 +29,7 @@ public abstract class GenericItemFillingMixin {
     private static void addCanteenRequiredFluid(Level world, ItemStack stack, FluidStack availableFluid,
                                                CallbackInfoReturnable<Integer> cir)
     {
-        if (stack.getItem() == ModItems.CANTEEN.get()
+        if (stack.getItem() == CBItems.CANTEEN.get()
             && CanteenFluidHandler.canFillCanteen(stack, availableFluid))
         {
             cir.setReturnValue(CanteenItem.ONE_FILL_VOLUME);
@@ -47,7 +47,7 @@ public abstract class GenericItemFillingMixin {
     private static void addCanteenFillBehavior(Level world, int requiredAmount, ItemStack stack, FluidStack availableFluid,
                                               CallbackInfoReturnable<ItemStack> cir)
     {
-        if (stack.getItem() == ModItems.CANTEEN.get()
+        if (stack.getItem() == CBItems.CANTEEN.get()
             && CanteenFluidHandler.canFillCanteen(stack, availableFluid))
         {
             ItemStack canteen = stack.copy();

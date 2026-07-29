@@ -1,7 +1,7 @@
 package com.linmjie.corebound.item;
 
 import com.linmjie.corebound.Corebound;
-import com.linmjie.corebound.component.ModDataComponentTypes;
+import com.linmjie.corebound.component.CBDataComponentTypes;
 import com.linmjie.corebound.item.custom.CanteenItem;
 import com.linmjie.corebound.item.custom.LoggerItem;
 import com.linmjie.corebound.item.custom.SpearItem;
@@ -19,7 +19,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class ModItems {
+public class CBItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Corebound.MODID);
 
     public static final DeferredItem<Item> RAW_TIN = ITEMS.registerSimpleItem("raw_tin");
@@ -47,7 +47,7 @@ public class ModItems {
                     new Item.Properties().
                             stacksTo(1).
                             component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).
-                            component(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0)
+                            component(CBDataComponentTypes.CANTEEN_POTION_COUNT, 0)
             ));
 
     public static final DeferredItem<LoggerItem> LOGGER_AXE = ITEMS.register("logger_axe",

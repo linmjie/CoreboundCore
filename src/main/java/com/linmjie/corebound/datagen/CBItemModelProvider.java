@@ -1,7 +1,7 @@
 package com.linmjie.corebound.datagen;
 
 import com.linmjie.corebound.Corebound;
-import com.linmjie.corebound.item.ModItems;
+import com.linmjie.corebound.item.CBItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
@@ -16,18 +16,18 @@ public class CBItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        basicItem(ModItems.RAW_TIN.get());
-        basicItem(ModItems.TWIG.get());
-        basicItem(ModItems.ROCK.get());
-        basicItem(ModItems.CANTEEN.get());
-        handheldItem(ModItems.WOODEN_SHEARS);
-        handheldItem(ModItems.SHARP_STICK);
-        handheldItem(ModItems.SAW);
-        handheldItem(ModItems.UNFIRED_SAW);
-        handheldItem(ModItems.PLIERS);
-        handheldItem(ModItems.UNFIRED_PLIERS);
-        handheldItem(ModItems.HAMMER);
-        handheldItem(ModItems.UNFIRED_HAMMER);
+        basicItem(CBItems.RAW_TIN.get());
+        basicItem(CBItems.TWIG.get());
+        basicItem(CBItems.ROCK.get());
+        basicItem(CBItems.CANTEEN.get());
+        handheldItem(CBItems.WOODEN_SHEARS);
+        handheldItem(CBItems.SHARP_STICK);
+        handheldItem(CBItems.SAW);
+        handheldItem(CBItems.UNFIRED_SAW);
+        handheldItem(CBItems.PLIERS);
+        handheldItem(CBItems.UNFIRED_PLIERS);
+        handheldItem(CBItems.HAMMER);
+        handheldItem(CBItems.UNFIRED_HAMMER);
 
         //handheldItem(ModItems.LOGGER_AXE);
     }

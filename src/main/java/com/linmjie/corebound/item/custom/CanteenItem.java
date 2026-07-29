@@ -1,8 +1,8 @@
 package com.linmjie.corebound.item.custom;
 
-import com.linmjie.corebound.component.ModDataComponentTypes;
+import com.linmjie.corebound.component.CBDataComponentTypes;
 import com.linmjie.corebound.fluid.CanteenFluidHandler;
-import com.linmjie.corebound.item.ModItems;
+import com.linmjie.corebound.item.CBItems;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -29,9 +29,9 @@ public class CanteenItem extends Item {
     }
 
     public static ItemStack getDefaultCanteen() {
-        ItemStack canteen = new ItemStack(ModItems.CANTEEN.get());
+        ItemStack canteen = new ItemStack(CBItems.CANTEEN.get());
         canteen.set(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
-        canteen.set(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
+        canteen.set(CBDataComponentTypes.CANTEEN_POTION_COUNT, 0);
         return canteen;
     }
 
@@ -73,7 +73,7 @@ public class CanteenItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
-        if (stack.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0) > 0) {
+        if (stack.getOrDefault(CBDataComponentTypes.CANTEEN_POTION_COUNT, 0) > 0) {
             return ItemUtils.startUsingInstantly(level, player, hand);
         }
         return super.use(level, player, hand);
@@ -88,7 +88,7 @@ public class CanteenItem extends Item {
             Objects.requireNonNull(tooltipComponents);
             potioncontents.addPotionTooltip(tooltipComponents::add, 1.0F, context.tickRate());
         }
-        int potionCount = stack.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
+        int potionCount = stack.getOrDefault(CBDataComponentTypes.CANTEEN_POTION_COUNT, 0);
         if (potionCount > 0) {
             tooltipComponents.add(Component.translatable("tooltip.corebound.canteen_potion_count_tooltip", potionCount, MAX_CAPACITY));
         } else {

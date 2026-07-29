@@ -1,9 +1,9 @@
 package com.linmjie.corebound.gui.menu;
 
 import com.linmjie.corebound.Corebound;
-import com.linmjie.corebound.block.ModBlocks;
+import com.linmjie.corebound.block.CBBlocks;
 import com.linmjie.corebound.util.CoreboundUtils;
-import com.linmjie.corebound.util.ModTags;
+import com.linmjie.corebound.util.CBTags;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
@@ -85,16 +85,16 @@ public class IncompleteCraftingMenu extends RecipeBookMenu<CraftingInput, Crafti
         //Manually adding everything
         sawRecipes = new HashSet<>();
         sawRecipes.addAll(CoreboundUtils.collectItems(ItemTags.PLANKS));
-        sawRecipes.addAll(CoreboundUtils.collectItems(ModTags.Items.WOODEN_TOOLS, "corebound"));
+        sawRecipes.addAll(CoreboundUtils.collectItems(CBTags.Items.WOODEN_TOOLS, "corebound"));
 
         pliersRecipes = new HashSet<>();
-        pliersRecipes.addAll(CoreboundUtils.collectItems(ModTags.Items.STONE_TOOLS, "corebound"));
+        pliersRecipes.addAll(CoreboundUtils.collectItems(CBTags.Items.STONE_TOOLS, "corebound"));
 
         hammerRecipes = new HashSet<>();
         hammerRecipes.add("corebound:cobblestone");
 
         alwaysAllow = new HashSet<>();
-        hammerRecipes.addAll(CoreboundUtils.collectItems(ModTags.Items.UNFIRED_CRAFTING_TOOLS));
+        hammerRecipes.addAll(CoreboundUtils.collectItems(CBTags.Items.UNFIRED_CRAFTING_TOOLS));
     }
 
     protected boolean validateRecipe(String resource){
@@ -181,7 +181,7 @@ public class IncompleteCraftingMenu extends RecipeBookMenu<CraftingInput, Crafti
     }
 
     public boolean stillValid(Player player) {
-        return stillValid(this.access, player, ModBlocks.INCOMPLETE_CRAFTING_TABLE.get());
+        return stillValid(this.access, player, CBBlocks.INCOMPLETE_CRAFTING_TABLE.get());
     }
 
     public ItemStack quickMoveStack(Player player, int index) {

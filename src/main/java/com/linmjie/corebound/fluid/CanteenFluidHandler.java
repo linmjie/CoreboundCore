@@ -1,30 +1,17 @@
 package com.linmjie.corebound.fluid;
 
-import com.linmjie.corebound.Corebound;
-import com.linmjie.corebound.component.ModDataComponentTypes;
-import com.linmjie.corebound.item.ModItems;
+import com.linmjie.corebound.component.CBDataComponentTypes;
 import com.linmjie.corebound.item.custom.CanteenItem;
 import com.simibubi.create.AllDataComponents;
-import com.simibubi.create.AllFluids;
 import com.simibubi.create.content.fluids.potion.PotionFluid;
 import com.simibubi.create.content.fluids.potion.PotionFluidHandler;
-import com.simibubi.create.content.fluids.tank.CreativeFluidTankBlockEntity;
-import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
-import com.simibubi.create.foundation.fluid.FluidHelper;
 import net.createmod.catnip.data.Pair;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
-import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 // Utility Class
 public class CanteenFluidHandler {
@@ -52,18 +39,18 @@ public class CanteenFluidHandler {
         assert contents != null;
         if (contents == PotionContents.EMPTY) {
             stack.set(DataComponents.POTION_CONTENTS, potionContents);
-            stack.set(ModDataComponentTypes.CANTEEN_POTION_COUNT, 1);
+            stack.set(CBDataComponentTypes.CANTEEN_POTION_COUNT, 1);
         } else {
             assert contents.equals(potionContents);
-            int canteenFill = stack.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
+            int canteenFill = stack.getOrDefault(CBDataComponentTypes.CANTEEN_POTION_COUNT, 0);
             if (canteenFill < CanteenItem.MAX_CAPACITY) {
-                stack.set(ModDataComponentTypes.CANTEEN_POTION_COUNT, canteenFill + 1);
+                stack.set(CBDataComponentTypes.CANTEEN_POTION_COUNT, canteenFill + 1);
             }
         }
     }
 
     public static void drainCanteen(ItemStack stack) {
-        int count = stack.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
+        int count = stack.getOrDefault(CBDataComponentTypes.CANTEEN_POTION_COUNT, 0);
         if (count <= 0) {
             stack.set(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
             return;
@@ -71,11 +58,11 @@ public class CanteenFluidHandler {
         if (count == 1) {
             stack.set(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
         }
-        stack.set(ModDataComponentTypes.CANTEEN_POTION_COUNT, count - 1);
+        stack.set(CBDataComponentTypes.CANTEEN_POTION_COUNT, count - 1);
     }
 
     public static boolean canFillCanteen(ItemStack canteen, FluidStack fluid) {
-        int canteenFill = canteen.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
+        int canteenFill = canteen.getOrDefault(CBDataComponentTypes.CANTEEN_POTION_COUNT, 0);
         boolean canteenNotFull = canteenFill < CanteenItem.MAX_CAPACITY;
         boolean potionContentsMatch;
         PotionContents availableFluidContents = fluid.get(DataComponents.POTION_CONTENTS);

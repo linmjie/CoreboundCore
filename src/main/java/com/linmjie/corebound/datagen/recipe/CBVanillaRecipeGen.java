@@ -1,11 +1,9 @@
 package com.linmjie.corebound.datagen.recipe;
 
 import com.linmjie.corebound.Corebound;
-import com.linmjie.corebound.block.ModBlocks;
-import com.linmjie.corebound.item.ModItems;
-import com.linmjie.corebound.util.ModTags;
-import com.simibubi.create.AllItems;
-import com.simibubi.create.AllTags;
+import com.linmjie.corebound.block.CBBlocks;
+import com.linmjie.corebound.item.CBItems;
+import com.linmjie.corebound.util.CBTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -28,35 +26,35 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
-        crudeSwordRecipe(recipeOutput, ItemTags.PLANKS, Items.WOODEN_SWORD, "wooden", ModItems.TWIG);
-        crudeShovelRecipe(recipeOutput, ItemTags.PLANKS, Items.WOODEN_SHOVEL, "wooden", ModItems.TWIG);
-        crudePickaxeRecipe(recipeOutput, ItemTags.PLANKS, Items.WOODEN_PICKAXE, "wooden", ModItems.TWIG);
-        crudeAxeRecipe(recipeOutput, ItemTags.PLANKS, Items.WOODEN_AXE, "wooden", ModItems.TWIG);
-        crudeHoeRecipe(recipeOutput, ItemTags.PLANKS, Items.WOODEN_HOE, "wooden", ModItems.TWIG);
+        crudeSwordRecipe(recipeOutput, ItemTags.PLANKS, Items.WOODEN_SWORD, "wooden", CBItems.TWIG);
+        crudeShovelRecipe(recipeOutput, ItemTags.PLANKS, Items.WOODEN_SHOVEL, "wooden", CBItems.TWIG);
+        crudePickaxeRecipe(recipeOutput, ItemTags.PLANKS, Items.WOODEN_PICKAXE, "wooden", CBItems.TWIG);
+        crudeAxeRecipe(recipeOutput, ItemTags.PLANKS, Items.WOODEN_AXE, "wooden", CBItems.TWIG);
+        crudeHoeRecipe(recipeOutput, ItemTags.PLANKS, Items.WOODEN_HOE, "wooden", CBItems.TWIG);
 
-        crudeSwordRecipe(recipeOutput, ItemTags.STONE_TOOL_MATERIALS, Items.STONE_SWORD, "stone", ModItems.ROCK);
-        crudeShovelRecipe(recipeOutput, ItemTags.STONE_TOOL_MATERIALS, Items.STONE_SHOVEL, "stone", ModItems.ROCK);
-        crudePickaxeRecipe(recipeOutput, ItemTags.STONE_TOOL_MATERIALS, Items.STONE_PICKAXE, "stone", ModItems.ROCK);
-        crudeAxeRecipe(recipeOutput, ItemTags.STONE_TOOL_MATERIALS, Items.STONE_AXE, "stone", ModItems.ROCK);
-        crudeHoeRecipe(recipeOutput, ItemTags.STONE_TOOL_MATERIALS, Items.STONE_HOE, "stone", ModItems.ROCK);
+        crudeSwordRecipe(recipeOutput, ItemTags.STONE_TOOL_MATERIALS, Items.STONE_SWORD, "stone", CBItems.ROCK);
+        crudeShovelRecipe(recipeOutput, ItemTags.STONE_TOOL_MATERIALS, Items.STONE_SHOVEL, "stone", CBItems.ROCK);
+        crudePickaxeRecipe(recipeOutput, ItemTags.STONE_TOOL_MATERIALS, Items.STONE_PICKAXE, "stone", CBItems.ROCK);
+        crudeAxeRecipe(recipeOutput, ItemTags.STONE_TOOL_MATERIALS, Items.STONE_AXE, "stone", CBItems.ROCK);
+        crudeHoeRecipe(recipeOutput, ItemTags.STONE_TOOL_MATERIALS, Items.STONE_HOE, "stone", CBItems.ROCK);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.WOODEN_SHEARS.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, CBItems.WOODEN_SHEARS.get())
                 .pattern(" P ")
                 .pattern("LIP")
                 .pattern("IL ")
                 .define('P', ItemTags.PLANKS)
-                .define('L', ModTags.Items.NON_STRIPPED_LOGS_THAT_BURN)
+                .define('L', CBTags.Items.NON_STRIPPED_LOGS_THAT_BURN)
                 .define('I', Items.STICK)
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
                 .save(recipeOutput);
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.UNFIRED_SAW.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, CBItems.UNFIRED_SAW.get())
                 .pattern(" C")
                 .pattern("CI")
                 .define('C', Items.CLAY_BALL)
                 .define('I', Items.STICK)
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
                 .save(recipeOutput);
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.UNFIRED_PLIERS.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, CBItems.UNFIRED_PLIERS.get())
                 .pattern("C C")
                 .pattern(" C ")
                 .pattern("I I")
@@ -64,7 +62,7 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
                 .define('I', Items.STICK)
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
                 .save(recipeOutput);
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.UNFIRED_HAMMER.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, CBItems.UNFIRED_HAMMER.get())
                 .pattern("CCC")
                 .pattern("CIC")
                 .pattern(" I ")
@@ -72,38 +70,38 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
                 .define('I', Items.STICK)
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
                 .save(recipeOutput);
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.SHARP_STICK.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, CBItems.SHARP_STICK.get())
                 .pattern(" TR")
                 .pattern(" IT")
                 .pattern("I  ")
-                .define('T', ModItems.TWIG.get())
-                .define('R', ModTags.Items.ROCK_ADJACENT)
+                .define('T', CBItems.TWIG.get())
+                .define('R', CBTags.Items.ROCK_ADJACENT)
                 .define('I', Items.STICK)
-                .unlockedBy(getHasName(ModItems.ROCK.get()), has(ModItems.ROCK.get()))
+                .unlockedBy(getHasName(CBItems.ROCK.get()), has(CBItems.ROCK.get()))
                 .save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, Items.COBBLESTONE)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .define('#', ModItems.ROCK)
-                .unlockedBy(getHasName(ModItems.ROCK), has(ModItems.ROCK))
+                .define('#', CBItems.ROCK)
+                .unlockedBy(getHasName(CBItems.ROCK), has(CBItems.ROCK))
                 .save(recipeOutput, modPrefix() + "cobblestone");
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.INCOMPLETE_CRAFTING_TABLE)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, CBBlocks.INCOMPLETE_CRAFTING_TABLE)
                 .pattern("##")
                 .pattern("##")
                 .define('#', ItemTags.PLANKS)
-                .unlockedBy(getHasName(ModItems.TWIG), has(ModItems.TWIG))
+                .unlockedBy(getHasName(CBItems.TWIG), has(CBItems.TWIG))
                 .save(recipeOutput);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.CANTEEN)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, CBItems.CANTEEN)
                 .pattern(" X ")
                 .pattern("#B#")
                 .pattern(" # ")
-                .define('#', ModTags.Items.INGOTS_STEEL)
+                .define('#', CBTags.Items.INGOTS_STEEL)
                 .define('B', Items.GLASS_BOTTLE)
-                .define('X', ModTags.Items.INGOTS_BRASS)
-                .unlockedBy("has_steel", has(ModTags.Items.INGOTS_STEEL))
+                .define('X', CBTags.Items.INGOTS_BRASS)
+                .unlockedBy("has_steel", has(CBTags.Items.INGOTS_STEEL))
                 .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Blocks.CAMPFIRE)
@@ -111,10 +109,10 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
                 .pattern("LL")
                 .define('I', Tags.Items.RODS_WOODEN)
                 .define('L', ItemTags.LOGS_THAT_BURN)
-                .unlockedBy(getHasName(ModItems.TWIG), has(ModItems.TWIG))
+                .unlockedBy(getHasName(CBItems.TWIG), has(CBItems.TWIG))
                 .save(recipeOutput, modPrefix() + "campfire");
 
-        ninePacker(recipeOutput, ModItems.RAW_TIN.get(), ModBlocks.RAW_TIN_BLOCK.get(), "tin");
+        ninePacker(recipeOutput, CBItems.RAW_TIN.get(), CBBlocks.RAW_TIN_BLOCK.get(), "tin");
 
         coreboundToolsFiring(recipeOutput, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, 200);
         coreboundToolsFiring(recipeOutput, "blasting", RecipeSerializer.BLASTING_RECIPE, BlastingRecipe::new, 1200);
@@ -127,9 +125,9 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
     protected static <T extends AbstractCookingRecipe> void coreboundToolsFiring(RecipeOutput recipeOutput, String cookingMethod,
                             RecipeSerializer<T> cookingSerializer, AbstractCookingRecipe.Factory<T> recipeFactory, int cookingTime) 
     {
-        simpleCookingRecipe(recipeOutput, cookingMethod, cookingSerializer, recipeFactory, cookingTime, ModItems.UNFIRED_SAW, ModItems.SAW, 0.2F);
-        simpleCookingRecipe(recipeOutput, cookingMethod, cookingSerializer, recipeFactory, cookingTime, ModItems.UNFIRED_PLIERS, ModItems.PLIERS, 0.2F);
-        simpleCookingRecipe(recipeOutput, cookingMethod, cookingSerializer, recipeFactory, cookingTime, ModItems.UNFIRED_HAMMER, ModItems.HAMMER, 0.2F);
+        simpleCookingRecipe(recipeOutput, cookingMethod, cookingSerializer, recipeFactory, cookingTime, CBItems.UNFIRED_SAW, CBItems.SAW, 0.2F);
+        simpleCookingRecipe(recipeOutput, cookingMethod, cookingSerializer, recipeFactory, cookingTime, CBItems.UNFIRED_PLIERS, CBItems.PLIERS, 0.2F);
+        simpleCookingRecipe(recipeOutput, cookingMethod, cookingSerializer, recipeFactory, cookingTime, CBItems.UNFIRED_HAMMER, CBItems.HAMMER, 0.2F);
     }
 
 
@@ -219,7 +217,7 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
                 .pattern("TIT")
                 .define('#', pMaterial)
                 .define('I', Items.STICK)
-                .define('T', ModItems.TWIG.get())
+                .define('T', CBItems.TWIG.get())
                 .unlockedBy(getHasName(unlock), has(pMaterial))
                 .save(pRecipeOutput, modPrefix() + name + "_sword");
     }
@@ -233,7 +231,7 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
                 .pattern(" I ")
                 .define('#', pMaterial)
                 .define('I', Items.STICK)
-                .define('T', ModItems.TWIG.get())
+                .define('T', CBItems.TWIG.get())
                 .unlockedBy(getHasName(unlock), has(pMaterial))
                 .save(pRecipeOutput, modPrefix() + name + "_shovel");
     }
@@ -247,7 +245,7 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
                 .pattern(" I ")
                 .define('#', pMaterial)
                 .define('I', Items.STICK)
-                .define('T', ModItems.TWIG.get())
+                .define('T', CBItems.TWIG.get())
                 .unlockedBy(getHasName(unlock), has(pMaterial))
                 .save(pRecipeOutput, modPrefix() + name + "_pickaxe");
     }
@@ -261,7 +259,7 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
                 .pattern(" I ")
                 .define('#', pMaterial)
                 .define('I', Items.STICK)
-                .define('T', ModItems.TWIG.get())
+                .define('T', CBItems.TWIG.get())
                 .unlockedBy(getHasName(unlock), has(pMaterial))
                 .save(pRecipeOutput, modPrefix() + name + "_axe");
     }
@@ -275,7 +273,7 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
                 .pattern(" I ")
                 .define('#', pMaterial)
                 .define('I', Items.STICK)
-                .define('T', ModItems.TWIG.get())
+                .define('T', CBItems.TWIG.get())
                 .unlockedBy(getHasName(unlock), has(pMaterial))
                 .save(pRecipeOutput, modPrefix() + name + "_hoe");
     }

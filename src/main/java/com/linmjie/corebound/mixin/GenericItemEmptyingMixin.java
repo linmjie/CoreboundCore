@@ -1,9 +1,8 @@
 package com.linmjie.corebound.mixin;
 
-import com.linmjie.corebound.Corebound;
-import com.linmjie.corebound.component.ModDataComponentTypes;
+import com.linmjie.corebound.component.CBDataComponentTypes;
 import com.linmjie.corebound.fluid.CanteenFluidHandler;
-import com.linmjie.corebound.item.ModItems;
+import com.linmjie.corebound.item.CBItems;
 import com.simibubi.create.content.fluids.transfer.GenericItemEmptying;
 import net.createmod.catnip.data.Pair;
 import net.minecraft.world.item.ItemStack;
@@ -20,8 +19,8 @@ public abstract class GenericItemEmptyingMixin {
     private static void addCanteenToCanBeEmptied(Level world, ItemStack stack,
                                                  CallbackInfoReturnable<Boolean> cir)
     {
-        if (stack.getItem() == ModItems.CANTEEN.get()) {
-            cir.setReturnValue(stack.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0) > 0);
+        if (stack.getItem() == CBItems.CANTEEN.get()) {
+            cir.setReturnValue(stack.getOrDefault(CBDataComponentTypes.CANTEEN_POTION_COUNT, 0) > 0);
         }
     }
 
@@ -29,7 +28,7 @@ public abstract class GenericItemEmptyingMixin {
     private static void addCanteenItemEmptying(Level level, ItemStack stack, boolean simulate,
                                                CallbackInfoReturnable<Pair<FluidStack, ItemStack>> cir)
     {
-        if (stack.getItem() == ModItems.CANTEEN.get()) {
+        if (stack.getItem() == CBItems.CANTEEN.get()) {
             cir.setReturnValue(CanteenFluidHandler.emptyCanteen(stack, simulate));
         }
     }

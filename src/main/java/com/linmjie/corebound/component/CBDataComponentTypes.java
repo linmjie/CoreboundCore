@@ -10,7 +10,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.UnaryOperator;
 
-public class ModDataComponentTypes {
+public class CBDataComponentTypes {
     public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENT_TYPE =
             DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, Corebound.MODID);
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> CANTEEN_POTION_COUNT = register(

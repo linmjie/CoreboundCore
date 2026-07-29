@@ -20,7 +20,7 @@ public record LootItemBlockTagPropertyCondition(TagKey<Block> blockTag) implemen
 
     @Override
     public LootItemConditionType getType() {
-        return ModLootRegistries.BLOCK_TAG.get();
+        return CBLootRegistries.BLOCK_TAG.get();
     }
 
     public static Builder matchesBlockTag(TagKey<Block> blockTag){

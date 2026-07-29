@@ -1,8 +1,8 @@
 package com.linmjie.corebound.datagen;
 
 import com.linmjie.corebound.Corebound;
-import com.linmjie.corebound.block.ModBlocks;
-import com.linmjie.corebound.util.ModTags;
+import com.linmjie.corebound.block.CBBlocks;
+import com.linmjie.corebound.util.CBTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -22,16 +22,16 @@ public class CBBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(BlockTags.MINEABLE_WITH_AXE)
-                .add(ModBlocks.INCOMPLETE_CRAFTING_TABLE.get());
+                .add(CBBlocks.INCOMPLETE_CRAFTING_TABLE.get());
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(ModBlocks.RAW_TIN_BLOCK.get());
+                .add(CBBlocks.RAW_TIN_BLOCK.get());
         tag(BlockTags.NEEDS_STONE_TOOL)
-                .add(ModBlocks.RAW_TIN_BLOCK.get());
+                .add(CBBlocks.RAW_TIN_BLOCK.get());
         tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
-                .add(ModBlocks.RAW_TIN_BLOCK.get());
+                .add(CBBlocks.RAW_TIN_BLOCK.get());
         tag(BlockTags.INCORRECT_FOR_GOLD_TOOL)
-                .add(ModBlocks.RAW_TIN_BLOCK.get());
-        tag(ModTags.Blocks.DROPS_ROCKS)
+                .add(CBBlocks.RAW_TIN_BLOCK.get());
+        tag(CBTags.Blocks.DROPS_ROCKS)
                 .add(Blocks.COBBLESTONE)
                 .add(Blocks.COBBLED_DEEPSLATE)
                 .add(Blocks.STONE)
@@ -39,8 +39,8 @@ public class CBBlockTagProvider extends BlockTagsProvider {
                 .add(Blocks.BLACKSTONE);
 
         tag(Tags.Blocks.STORAGE_BLOCKS)
-                .add(ModBlocks.RAW_TIN_BLOCK.get());
-        tag(ModTags.Blocks.RAW_TIN_STORAGE)
-                .add(ModBlocks.RAW_TIN_BLOCK.get());
+                .add(CBBlocks.RAW_TIN_BLOCK.get());
+        tag(CBTags.Blocks.RAW_TIN_STORAGE)
+                .add(CBBlocks.RAW_TIN_BLOCK.get());
     }
 }

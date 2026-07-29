@@ -1,16 +1,12 @@
 package com.linmjie.corebound;
 
-import com.linmjie.corebound.block.ModBlockEntities;
-import com.linmjie.corebound.block.ModBlocks;
-import com.linmjie.corebound.component.ModDataComponentTypes;
-import com.linmjie.corebound.item.ModItems;
+import com.linmjie.corebound.block.CBBlockEntities;
+import com.linmjie.corebound.block.CBBlocks;
+import com.linmjie.corebound.component.CBDataComponentTypes;
+import com.linmjie.corebound.item.CBItems;
 import com.linmjie.corebound.item.custom.CanteenItem;
-import com.linmjie.corebound.loot.ModLootRegistries;
-import com.linmjie.corebound.screen.ModMenuTypes;
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.alchemy.PotionContents;
-import net.minecraft.world.item.alchemy.Potions;
+import com.linmjie.corebound.loot.CBLootRegistries;
+import com.linmjie.corebound.screen.CBMenuTypes;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -50,11 +46,11 @@ public class Corebound {
         modEventBus.addListener(this::commonSetup);
 
         // Register the Deferred Register to the mod event bus so blocks get registered
-        ModBlocks.register(modEventBus);
-        ModBlockEntities.register(modEventBus);
+        CBBlocks.register(modEventBus);
+        CBBlockEntities.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
-        ModItems.register(modEventBus);
-        ModDataComponentTypes.register(modEventBus);
+        CBItems.register(modEventBus);
+        CBDataComponentTypes.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
 
@@ -64,10 +60,10 @@ public class Corebound {
         NeoForge.EVENT_BUS.register(this);
 
         // Register mod global loot modifiers and pass through event bus
-        ModLootRegistries.register(modEventBus);
+        CBLootRegistries.register(modEventBus);
 
         //Register Menus
-        ModMenuTypes.register(modEventBus);
+        CBMenuTypes.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -92,28 +88,28 @@ public class Corebound {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(ModBlocks.RAW_TIN_BLOCK);
+            event.accept(CBBlocks.RAW_TIN_BLOCK);
         }
     }
     // Creates a creative tab with the id "corebound:example_tab" for the example item, that is placed after the combat tab
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register(
             "corebound", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.corebound")) //The language key for the title of your CreativeModeTab
-            .icon(() -> ModItems.SHARP_STICK.get().getDefaultInstance())
+            .icon(() -> CBItems.SHARP_STICK.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.accept(ModItems.RAW_TIN.get());
-                output.accept(ModBlocks.RAW_TIN_BLOCK.get());
-                output.accept(ModItems.ROCK.get());
-                output.accept(ModItems.LOGGER_AXE.get());
-                output.accept(ModItems.WOODEN_SHEARS);
-                output.accept(ModItems.TWIG);
-                output.accept(ModItems.SHARP_STICK);
-                output.accept(ModItems.UNFIRED_SAW);
-                output.accept(ModItems.UNFIRED_PLIERS);
-                output.accept(ModItems.UNFIRED_HAMMER);
-                output.accept(ModItems.SAW);
-                output.accept(ModItems.PLIERS);
-                output.accept(ModItems.HAMMER);
+                output.accept(CBItems.RAW_TIN.get());
+                output.accept(CBBlocks.RAW_TIN_BLOCK.get());
+                output.accept(CBItems.ROCK.get());
+                output.accept(CBItems.LOGGER_AXE.get());
+                output.accept(CBItems.WOODEN_SHEARS);
+                output.accept(CBItems.TWIG);
+                output.accept(CBItems.SHARP_STICK);
+                output.accept(CBItems.UNFIRED_SAW);
+                output.accept(CBItems.UNFIRED_PLIERS);
+                output.accept(CBItems.UNFIRED_HAMMER);
+                output.accept(CBItems.SAW);
+                output.accept(CBItems.PLIERS);
+                output.accept(CBItems.HAMMER);
 
                 output.accept(CanteenItem.getDefaultCanteen());
                 //ItemStack testerCanteen = new ItemStack(ModItems.CANTEEN.get());
@@ -121,7 +117,7 @@ public class Corebound {
                 //testerCanteen.set(ModDataComponentTypes.CANTEEN_POTION_COUNT, 9);
                 //output.accept(testerCanteen);
 
-                output.accept(ModBlocks.INCOMPLETE_CRAFTING_TABLE.get());
+                output.accept(CBBlocks.INCOMPLETE_CRAFTING_TABLE.get());
             }).build());
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

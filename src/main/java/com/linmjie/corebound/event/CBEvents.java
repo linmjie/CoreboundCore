@@ -29,7 +29,7 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import java.util.*;
 
 @EventBusSubscriber(modid = Corebound.MODID)
-public class ModEvents {
+public class CBEvents {
     private static final Set<BlockPos> HARVESTED_BLOCKS = new HashSet<>();
 
     private static final AttributeModifier SPEAR_ENTITY_RANGE_MODIFIER =

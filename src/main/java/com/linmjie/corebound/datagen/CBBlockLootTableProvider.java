@@ -1,6 +1,6 @@
 package com.linmjie.corebound.datagen;
 
-import com.linmjie.corebound.block.ModBlocks;
+import com.linmjie.corebound.block.CBBlocks;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -16,12 +16,12 @@ public class CBBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        dropSelf(ModBlocks.RAW_TIN_BLOCK.get());
-        dropSelf(ModBlocks.INCOMPLETE_CRAFTING_TABLE.get());
+        dropSelf(CBBlocks.RAW_TIN_BLOCK.get());
+        dropSelf(CBBlocks.INCOMPLETE_CRAFTING_TABLE.get());
     }
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return ModBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
+        return CBBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
     }
 }
