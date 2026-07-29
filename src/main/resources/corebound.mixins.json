@@ -4,7 +4,6 @@
   "package": "com.linmjie.corebound.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "acccessors.ItemDrainAccessor",
     "GenericItemFillingMixin",
     "GenericItemEmptyingMixin"
   ],

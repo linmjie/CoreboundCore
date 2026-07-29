@@ -1,7 +1,6 @@
 package com.linmjie.corebound.datagen;
 
 import com.linmjie.corebound.Corebound;
-import com.linmjie.corebound.block.ModBlocks;
 import com.linmjie.corebound.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -10,8 +9,8 @@ import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-public class ModItemModelProvider extends ItemModelProvider {
-    public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+public class CBItemModelProvider extends ItemModelProvider {
+    public CBItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, Corebound.MODID, existingFileHelper);
     }
 
@@ -22,6 +21,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.ROCK.get());
         handheldItem(ModItems.WOODEN_SHEARS);
         handheldItem(ModItems.SHARP_STICK);
+        handheldItem(ModItems.SAW);
+        handheldItem(ModItems.UNFIRED_SAW);
+        handheldItem(ModItems.PLIERS);
+        handheldItem(ModItems.UNFIRED_PLIERS);
+        handheldItem(ModItems.HAMMER);
+        handheldItem(ModItems.UNFIRED_HAMMER);
 
         //handheldItem(ModItems.LOGGER_AXE);
     }

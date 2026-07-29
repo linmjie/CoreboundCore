@@ -10,11 +10,10 @@ import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import org.apache.logging.log4j.core.Core;
 
-public class ModBlockStateProvider extends BlockStateProvider {
+public class CBBlockStateProvider extends BlockStateProvider {
 
-    public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+    public CBBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, Corebound.MODID, exFileHelper);
     }
 

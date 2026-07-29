@@ -18,8 +18,8 @@ import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModGlobalLootModifierProvider extends GlobalLootModifierProvider {
-    public ModGlobalLootModifierProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+public class CBGlobalLootModifierProvider extends GlobalLootModifierProvider {
+    public CBGlobalLootModifierProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, Corebound.MODID);
     }
 
