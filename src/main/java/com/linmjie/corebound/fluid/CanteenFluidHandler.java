@@ -78,14 +78,14 @@ public class CanteenFluidHandler {
         int canteenFill = canteen.getOrDefault(ModDataComponentTypes.CANTEEN_POTION_COUNT, 0);
         boolean canteenNotFull = canteenFill < CanteenItem.MAX_CAPACITY;
         boolean potionContentsMatch;
+        PotionContents availableFluidContents = fluid.get(DataComponents.POTION_CONTENTS);
         if (canteenFill > 0) {
             PotionContents canteenContents = canteen.get(DataComponents.POTION_CONTENTS);
-            PotionContents availableFluidContents = fluid.get(DataComponents.POTION_CONTENTS);
             assert canteenContents != null;
             potionContentsMatch = canteenContents.equals(availableFluidContents);
         } else {
             assert canteenFill == 0;
-            potionContentsMatch = true;
+            potionContentsMatch = availableFluidContents != null;
         }
         return canteenNotFull && potionContentsMatch;
     }

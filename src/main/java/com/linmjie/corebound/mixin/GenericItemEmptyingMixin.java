@@ -29,7 +29,6 @@ public abstract class GenericItemEmptyingMixin {
     private static void addCanteenItemEmptying(Level level, ItemStack stack, boolean simulate,
                                                CallbackInfoReturnable<Pair<FluidStack, ItemStack>> cir)
     {
-        Corebound.LOGGER.info("Adding empty item emptying");
         if (stack.getItem() == ModItems.CANTEEN.get()) {
             cir.setReturnValue(CanteenFluidHandler.emptyCanteen(stack, simulate));
         }

@@ -4,6 +4,7 @@ import com.linmjie.corebound.Corebound;
 import com.linmjie.corebound.block.ModBlocks;
 import com.linmjie.corebound.item.ModItems;
 import com.linmjie.corebound.util.ModTags;
+import com.simibubi.create.AllTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -82,6 +83,11 @@ public class CBItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.SAW.get())
                 .add(ModItems.PLIERS.get())
                 .add(ModItems.HAMMER.get());
+
+        tag(AllTags.AllItemTags.DEPLOYABLE_DRINK.tag)
+                .add(ModItems.CANTEEN.get());
+        tag(AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
+                .add(ModItems.CANTEEN.get());
 
         tag(Tags.Items.RAW_MATERIALS)
                 .add(ModItems.RAW_TIN.get());

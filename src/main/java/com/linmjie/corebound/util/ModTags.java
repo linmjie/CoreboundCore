@@ -44,6 +44,9 @@ public class ModTags {
         public static final TagKey<Item> RAW_MATERIALS_TIN = createCommonTag("raw_materials/tin");
         public static final TagKey<Item> STORAGE_BLOCKS_RAW_TIN = createCommonTag("storage_blocks/raw_tin");
 
+        public static final TagKey<Item> INGOTS_STEEL = createCommonTag("ingots/steel");
+        public static final TagKey<Item> INGOTS_BRASS = createCommonTag("ingots/brass");
+
         private static net.minecraft.tags.TagKey<Item> createCommonTag(String name){
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
         }

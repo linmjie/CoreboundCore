@@ -4,6 +4,8 @@ import com.linmjie.corebound.Corebound;
 import com.linmjie.corebound.block.ModBlocks;
 import com.linmjie.corebound.item.ModItems;
 import com.linmjie.corebound.util.ModTags;
+import com.simibubi.create.AllItems;
+import com.simibubi.create.AllTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -92,6 +94,16 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
                 .pattern("##")
                 .define('#', ItemTags.PLANKS)
                 .unlockedBy(getHasName(ModItems.TWIG), has(ModItems.TWIG))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ModItems.CANTEEN)
+                .pattern(" X ")
+                .pattern("#B#")
+                .pattern(" # ")
+                .define('#', ModTags.Items.INGOTS_STEEL)
+                .define('B', Items.GLASS_BOTTLE)
+                .define('X', ModTags.Items.INGOTS_BRASS)
+                .unlockedBy("has_steel", has(ModTags.Items.INGOTS_STEEL))
                 .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Blocks.CAMPFIRE)
