@@ -98,6 +98,8 @@ public class Corebound {
             .icon(() -> CBItems.SHARP_STICK.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 output.accept(CBItems.RAW_TIN.get());
+                output.accept(CBBlocks.TIN_ORE.get());
+                output.accept(CBBlocks.DEEPSLATE_TIN_ORE.get());
                 output.accept(CBBlocks.RAW_TIN_BLOCK.get());
                 output.accept(CBItems.ROCK.get());
                 output.accept(CBItems.LOGGER_AXE.get());

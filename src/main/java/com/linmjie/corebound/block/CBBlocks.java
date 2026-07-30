@@ -3,9 +3,11 @@ package com.linmjie.corebound.block;
 import com.linmjie.corebound.Corebound;
 import com.linmjie.corebound.block.custom.IncompleteCraftingTableBlock;
 import com.linmjie.corebound.item.CBItems;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -19,7 +21,18 @@ import java.util.function.Supplier;
 public class CBBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Corebound.MODID);
 
-    public static final DeferredBlock<Block> RAW_TIN_BLOCK = registerBlock("raw_tin_block",
+    public static final DeferredBlock<Block>
+
+        TIN_ORE = registerBlock("tin_ore",
+            () -> new DropExperienceBlock(ConstantInt.of(0),
+                    BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM)
+                    .requiresCorrectToolForDrops().strength(3.0F, 3.0F))),
+        DEEPSLATE_TIN_ORE = registerBlock("deepslate_tin_ore",
+            () -> new DropExperienceBlock(ConstantInt.of(0),
+                    BlockBehaviour.Properties.ofFullCopy(TIN_ORE.get())
+                    .mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE))),
+        RAW_TIN_BLOCK = registerBlock("raw_tin_block",
             () -> new Block(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_LIGHT_GRAY).instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresCorrectToolForDrops().strength(5.0F, 6.0F)));

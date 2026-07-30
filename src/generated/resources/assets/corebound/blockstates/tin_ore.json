@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "corebound:block/tin_ore"
+    }
+  }
+}

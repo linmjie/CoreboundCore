@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "corebound:block/deepslate_tin_ore"
+    }
+  }
+}

@@ -1,6 +1,7 @@
 package com.linmjie.corebound.datagen;
 
 import com.linmjie.corebound.block.CBBlocks;
+import com.linmjie.corebound.item.CBItems;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -18,6 +19,14 @@ public class CBBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
         dropSelf(CBBlocks.RAW_TIN_BLOCK.get());
         dropSelf(CBBlocks.INCOMPLETE_CRAFTING_TABLE.get());
+
+        this.add(CBBlocks.TIN_ORE.get(),
+            block -> createOreDrop(CBBlocks.TIN_ORE.get(),
+            CBItems.RAW_TIN.get()));
+
+        this.add(CBBlocks.DEEPSLATE_TIN_ORE.get(),
+                block -> createOreDrop(CBBlocks.DEEPSLATE_TIN_ORE.get(),
+                        CBItems.RAW_TIN.get()));
     }
 
     @Override

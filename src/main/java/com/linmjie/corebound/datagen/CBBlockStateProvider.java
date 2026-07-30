@@ -19,6 +19,8 @@ public class CBBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        blockWithItem(CBBlocks.TIN_ORE);
+        blockWithItem(CBBlocks.DEEPSLATE_TIN_ORE);
         blockWithItem(CBBlocks.RAW_TIN_BLOCK);
         incompleteCraftingTable(CBBlocks.INCOMPLETE_CRAFTING_TABLE,
                 "top", "bottom", "side_pli",

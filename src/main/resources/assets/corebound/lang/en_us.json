@@ -1,5 +1,7 @@
 {
   "itemGroup.corebound": "Corebound",
+  "block.corebound.tin_ore": "Tin Ore",
+  "block.corebound.deepslate_tin_ore": "Deepslate Tin Ore",
   "block.corebound.raw_tin_block": "Block of Raw Tin",
   "block.corebound.incomplete_crafting_table": "Incomplete Crafting Table",
 

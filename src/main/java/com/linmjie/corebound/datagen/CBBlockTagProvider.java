@@ -24,19 +24,36 @@ public class CBBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(CBBlocks.INCOMPLETE_CRAFTING_TABLE.get());
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(CBBlocks.RAW_TIN_BLOCK.get());
+                .add(CBBlocks.RAW_TIN_BLOCK.get())
+                .add(CBBlocks.TIN_ORE.get())
+                .add(CBBlocks.DEEPSLATE_TIN_ORE.get());
         tag(BlockTags.NEEDS_STONE_TOOL)
-                .add(CBBlocks.RAW_TIN_BLOCK.get());
+                .add(CBBlocks.RAW_TIN_BLOCK.get())
+                .add(CBBlocks.TIN_ORE.get())
+                .add(CBBlocks.DEEPSLATE_TIN_ORE.get());
         tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
-                .add(CBBlocks.RAW_TIN_BLOCK.get());
+                .add(CBBlocks.RAW_TIN_BLOCK.get())
+                .add(CBBlocks.TIN_ORE.get())
+                .add(CBBlocks.DEEPSLATE_TIN_ORE.get());
         tag(BlockTags.INCORRECT_FOR_GOLD_TOOL)
                 .add(CBBlocks.RAW_TIN_BLOCK.get());
+
         tag(CBTags.Blocks.DROPS_ROCKS)
                 .add(Blocks.COBBLESTONE)
                 .add(Blocks.COBBLED_DEEPSLATE)
                 .add(Blocks.STONE)
                 .add(Blocks.DEEPSLATE)
                 .add(Blocks.BLACKSTONE);
+
+        tag(Tags.Blocks.ORES)
+                .addTag(CBTags.Blocks.TIN_ORES);
+        tag(Tags.Blocks.ORES_IN_GROUND_STONE)
+                .add(CBBlocks.TIN_ORE.get());
+        tag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE)
+                .add(CBBlocks.DEEPSLATE_TIN_ORE.get());
+        tag(CBTags.Blocks.TIN_ORES)
+                .add(CBBlocks.TIN_ORE.get())
+                .add(CBBlocks.DEEPSLATE_TIN_ORE.get());
 
         tag(Tags.Blocks.STORAGE_BLOCKS)
                 .add(CBBlocks.RAW_TIN_BLOCK.get());

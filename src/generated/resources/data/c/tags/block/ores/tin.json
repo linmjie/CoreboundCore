@@ -1,6 +1,5 @@
 {
   "values": [
-    "corebound:raw_tin_block",
     "corebound:tin_ore",
     "corebound:deepslate_tin_ore"
   ]
