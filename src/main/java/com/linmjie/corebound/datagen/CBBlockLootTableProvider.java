@@ -19,6 +19,7 @@ public class CBBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
         dropSelf(CBBlocks.RAW_TIN_BLOCK.get());
         dropSelf(CBBlocks.INCOMPLETE_CRAFTING_TABLE.get());
+        dropSelf(CBBlocks.DARK_PORTAL.get());
 
         this.add(CBBlocks.TIN_ORE.get(),
             block -> createOreDrop(CBBlocks.TIN_ORE.get(),

@@ -1,6 +1,7 @@
 package com.linmjie.corebound.block;
 
 import com.linmjie.corebound.Corebound;
+import com.linmjie.corebound.block.custom.DarkPortalBlock;
 import com.linmjie.corebound.block.custom.IncompleteCraftingTableBlock;
 import com.linmjie.corebound.item.CBItems;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -40,6 +41,13 @@ public class CBBlocks {
     public static final DeferredBlock<IncompleteCraftingTableBlock> INCOMPLETE_CRAFTING_TABLE = registerBlock("incomplete_crafting_table",
             () -> new IncompleteCraftingTableBlock(BlockBehaviour.Properties.of().
                     randomTicks().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.WOOD).ignitedByLava()));
+
+    //Obsidian-ish numbers so it isn't trivially griefed, glows a bit so you can find it in the dark
+    public static final DeferredBlock<DarkPortalBlock> DARK_PORTAL = registerBlock("dark_portal",
+            () -> new DarkPortalBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_BLACK).instrument(NoteBlockInstrument.BASEDRUM)
+                    .requiresCorrectToolForDrops().strength(5.0F, 1200.0F)
+                    .sound(SoundType.STONE).lightLevel(state -> 7)));
 
     public static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name,block);

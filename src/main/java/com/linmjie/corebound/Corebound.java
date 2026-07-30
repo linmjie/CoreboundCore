@@ -120,6 +120,7 @@ public class Corebound {
                 //output.accept(testerCanteen);
 
                 output.accept(CBBlocks.INCOMPLETE_CRAFTING_TABLE.get());
+                output.accept(CBBlocks.DARK_PORTAL.get());
             }).build());
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

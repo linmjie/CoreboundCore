@@ -27,6 +27,9 @@ public class CBBlockStateProvider extends BlockStateProvider {
                 "front_ham", "front_saw", "front_saw_ham",
                 "blank");
         blockItem(CBBlocks.INCOMPLETE_CRAFTING_TABLE);
+        //Placeholder texture, swap the crying obsidian out once dark_portal.png exists
+        simpleBlockWithItem(CBBlocks.DARK_PORTAL.get(),
+                models().cubeAll("dark_portal", ResourceLocation.withDefaultNamespace("block/crying_obsidian")));
     }
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {

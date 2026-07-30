@@ -26,7 +26,8 @@ public class CBBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(CBBlocks.RAW_TIN_BLOCK.get())
                 .add(CBBlocks.TIN_ORE.get())
-                .add(CBBlocks.DEEPSLATE_TIN_ORE.get());
+                .add(CBBlocks.DEEPSLATE_TIN_ORE.get())
+                .add(CBBlocks.DARK_PORTAL.get());
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(CBBlocks.RAW_TIN_BLOCK.get())
                 .add(CBBlocks.TIN_ORE.get())

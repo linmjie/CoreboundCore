@@ -1,0 +1,18 @@
+{
+  "type": "corebound:dark_world",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "minecraft:the_void",
+      "lakes": false,
+      "features": false,
+      "structure_overrides": [],
+      "layers": [
+        {
+          "block": "minecraft:deepslate",
+          "height": 4
+        }
+      ]
+    }
+  }
+}
