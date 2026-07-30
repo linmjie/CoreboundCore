@@ -89,13 +89,25 @@ public class CBItemTagProvider extends ItemTagsProvider {
         tag(AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
                 .add(CBItems.CANTEEN.get());
 
+        // COMMON
+
+        tag(CBTags.Items.STORAGE_BLOCKS_STEEL)
+                .add(CBItems.DEV_STEEL_CRAFTER.get());
+        tag(CBTags.Items.PLATES_STEEL)
+                .add(CBItems.DEV_STEEL_CRAFTER.get());
+        tag(CBTags.Items.INGOTS_STEEL)
+                .add(CBItems.DEV_STEEL_CRAFTER.get());
+        tag(CBTags.Items.NUGGETS_STEEL)
+                .add(CBItems.DEV_STEEL_CRAFTER.get());
+
         tag(Tags.Items.RAW_MATERIALS)
                 .add(CBItems.RAW_TIN.get());
         tag(CBTags.Items.RAW_MATERIALS_TIN)
                 .add(CBItems.RAW_TIN.get());
-        tag(CBTags.Items.STORAGE_BLOCKS_RAW_TIN)
-                .add(CBBlocks.RAW_TIN_BLOCK.asItem());
+
         tag(Tags.Items.STORAGE_BLOCKS)
+                .add(CBBlocks.RAW_TIN_BLOCK.asItem());
+        tag(CBTags.Items.STORAGE_BLOCKS_RAW_TIN)
                 .add(CBBlocks.RAW_TIN_BLOCK.asItem());
     }
 }

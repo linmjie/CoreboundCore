@@ -22,51 +22,55 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class CBItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Corebound.MODID);
 
-    public static final DeferredItem<Item> RAW_TIN = ITEMS.registerSimpleItem("raw_tin");
-    public static final DeferredItem<Item> TWIG = ITEMS.register("twig",
-            () -> new TwigItem(new Item.Properties()));
+    public static final DeferredItem<Item>
 
-    public static final DeferredItem<Item> ROCK = ITEMS.registerSimpleItem("rock");
+        DEV_STEEL_CRAFTER = ITEMS.registerSimpleItem("dev_steel_crafter"),
 
-    public static final DeferredItem<Item> UNFIRED_SAW = ITEMS.registerSimpleItem("unfired_saw",
-            new Item.Properties().stacksTo(1));
-    public static final DeferredItem<Item> UNFIRED_PLIERS = ITEMS.registerSimpleItem("unfired_pliers",
-            new Item.Properties().stacksTo(1));
-    public static final DeferredItem<Item> UNFIRED_HAMMER = ITEMS.registerSimpleItem("unfired_hammer",
-            new Item.Properties().stacksTo(1));
+        RAW_TIN = ITEMS.registerSimpleItem("raw_tin"),
+        TWIG = ITEMS.register("twig",
+            () -> new TwigItem(new Item.Properties())),
 
-    public static final DeferredItem<Item> SAW = ITEMS.registerSimpleItem("saw",
-            new Item.Properties().stacksTo(1));
-    public static final DeferredItem<Item> PLIERS = ITEMS.registerSimpleItem("pliers",
-            new Item.Properties().stacksTo(1));
-    public static final DeferredItem<Item> HAMMER = ITEMS.registerSimpleItem("hammer",
-            new Item.Properties().stacksTo(1));
+        ROCK = ITEMS.registerSimpleItem("rock"),
 
-    public static final DeferredItem<Item> CANTEEN = ITEMS.register("canteen",
+        UNFIRED_SAW = ITEMS.registerSimpleItem("unfired_saw",
+            new Item.Properties().stacksTo(1)),
+        UNFIRED_PLIERS = ITEMS.registerSimpleItem("unfired_pliers",
+            new Item.Properties().stacksTo(1)),
+        UNFIRED_HAMMER = ITEMS.registerSimpleItem("unfired_hammer",
+            new Item.Properties().stacksTo(1)),
+
+        SAW = ITEMS.registerSimpleItem("saw",
+            new Item.Properties().stacksTo(1)),
+        PLIERS = ITEMS.registerSimpleItem("pliers",
+            new Item.Properties().stacksTo(1)),
+        HAMMER = ITEMS.registerSimpleItem("hammer",
+            new Item.Properties().stacksTo(1)),
+
+        CANTEEN = ITEMS.register("canteen",
             () -> new CanteenItem(
-                    new Item.Properties().
-                            stacksTo(1).
-                            component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).
-                            component(CBDataComponentTypes.CANTEEN_POTION_COUNT, 0)
-            ));
+                new Item.Properties()
+                .stacksTo(1)
+                .component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY)
+                .component(CBDataComponentTypes.CANTEEN_POTION_COUNT, 0)
+            )),
+
+        WOODEN_SHEARS = ITEMS.register("wooden_shears",
+            () -> new Item(new Item.Properties()
+            .durability(64)){
+            public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity entityLiving) {
+                if (!level.isClientSide && !state.is(BlockTags.FIRE)) {
+                    stack.hurtAndBreak(1, entityLiving, EquipmentSlot.MAINHAND);
+                }
+                return false;
+            }}),
+
+        SHARP_STICK = ITEMS.register("sharp_stick",
+            () -> new SpearItem(Tiers.WOOD, new Item.Properties().
+                attributes(SwordItem.createAttributes(Tiers.WOOD, 3, -3.2F))));
 
     public static final DeferredItem<LoggerItem> LOGGER_AXE = ITEMS.register("logger_axe",
-            () -> new LoggerItem(Tiers.IRON, new Item.Properties()
-                    .attributes(AxeItem.createAttributes(Tiers.IRON,3F, 1F))));
-
-    public static final DeferredItem<Item> WOODEN_SHEARS = ITEMS.register("wooden_shears",
-            () -> new Item(new Item.Properties()
-                    .durability(64)){
-                public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-                    if (!level.isClientSide && !state.is(BlockTags.FIRE)) {
-                        stack.hurtAndBreak(1, entityLiving, EquipmentSlot.MAINHAND);
-                    }
-                    return false;
-                }});
-
-    public static final DeferredItem<Item> SHARP_STICK = ITEMS.register("sharp_stick",
-            () -> new SpearItem(Tiers.WOOD, new Item.Properties().
-                    attributes(SwordItem.createAttributes(Tiers.WOOD, 3, -3.2F))));
+        () -> new LoggerItem(Tiers.IRON, new Item.Properties()
+            .attributes(AxeItem.createAttributes(Tiers.IRON,3F, 1F))));
 
     public static void register (IEventBus eventBus){
         ITEMS.register(eventBus);

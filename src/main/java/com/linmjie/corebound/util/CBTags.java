@@ -45,7 +45,13 @@ public class CBTags {
             STORAGE_BLOCKS_RAW_TIN = createCommonTag("storage_blocks/raw_tin"),
 
             INGOTS_STEEL = createCommonTag("ingots/steel"),
-            INGOTS_BRASS = createCommonTag("ingots/brass");
+            INGOTS_BRASS = createCommonTag("ingots/brass"),
+
+            NUGGETS_STEEL = createCommonTag("nuggets/steel"),
+
+            PLATES_STEEL = createCommonTag("plates/steel"),
+
+            STORAGE_BLOCKS_STEEL = createCommonTag("storage_blocks/steel");
 
         private static net.minecraft.tags.TagKey<Item> createTag(String name){
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(Corebound.MODID, name));
