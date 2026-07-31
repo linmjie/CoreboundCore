@@ -40,6 +40,8 @@ public class DataGenerators {
         generator.addProvider(event.includeClient(), new CBBlockStateProvider(packOutput, existingFileHelper));
         generator.addProvider(event.includeServer(), new CBGlobalLootModifierProvider(packOutput, lookupProvider));
 
+        generator.addProvider(event.includeServer(), new CBDatapackEntries(packOutput, lookupProvider));
+
         if (event.includeServer()) {
             CBRecipeProvider.registerAllProcessing(generator, packOutput, lookupProvider);
         }
