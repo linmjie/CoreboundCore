@@ -1,5 +1,6 @@
 # Usage
 Download this mod repository and let gradle do its magic (if you're running it in an IDE)
+
 Most important commands:
  - runClient: starts modded minecraft client
  - runData: runs datagen
