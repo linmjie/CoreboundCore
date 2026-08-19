@@ -1,25 +1,13 @@
+# Usage
+Download this mod repository and let gradle do its magic (if you're running it in an IDE)
+Most important commands:
+ - runClient: starts modded minecraft client
+ - runData: runs datagen
+ - build: builds a jar in ./build/libs
 
-Installation information
-=======
-
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
-
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
-
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
-
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
-
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+For building and publishing to the unlisted [Modrinth mod page](https://modrinth.com/mod/coreboundcore):
+ - Login to [Modrinth](https://modrinth.com)
+ - Go to settings -> Personal Access Tokens
+ - Create a token with permissions to create versions
+ - Open the mod directory and set the environment variable `MODRINTH_TOKEN` token to your Personal Access Token (easily done in Intellij IDEA by right clicking on the gradle command, going to Modify Run Configuration and setting the environment variable there)
+ - Run the `gradlew modrinth`/`./gradlew modrinth` command once your environment variable has been set
