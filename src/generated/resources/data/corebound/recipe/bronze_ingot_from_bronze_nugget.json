@@ -3,7 +3,7 @@
   "category": "building",
   "key": {
     "#": {
-      "item": "corebound:tin_ingot"
+      "item": "corebound:bronze_nugget"
     }
   },
   "pattern": [
@@ -13,6 +13,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "corebound:tin_block"
+    "id": "corebound:bronze_ingot"
   }
 }

@@ -3,11 +3,11 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "corebound:tin_block"
+      "item": "corebound:tin_ingot"
     }
   ],
   "result": {
     "count": 9,
-    "id": "corebound:tin_ingot"
+    "id": "corebound:tin_nugget"
   }
 }

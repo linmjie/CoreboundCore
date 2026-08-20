@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_steel_ingot": {
+    "has_bronze_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "#c:ingots/steel"
+            "items": "corebound:bronze_ingot"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "corebound:canteen"
+        "recipe": "corebound:bronze_nugget_from_bronze_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_steel_ingot"
+      "has_bronze_ingot"
     ]
   ],
   "rewards": {
     "recipes": [
-      "corebound:canteen"
+      "corebound:bronze_nugget_from_bronze_ingot"
     ]
   }
 }

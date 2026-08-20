@@ -8,6 +8,7 @@ import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -36,7 +37,15 @@ public class CBBlocks {
         RAW_TIN_BLOCK = registerBlock("raw_tin_block",
             () -> new Block(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_LIGHT_GRAY).instrument(NoteBlockInstrument.BASEDRUM)
-                    .requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
+                    .requiresCorrectToolForDrops().strength(5.0F, 6.0F))),
+        TIN_BLOCK = registerBlock("tin_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .mapColor(MapColor.COLOR_LIGHT_GRAY)
+                    .strength(3.0F, 6.0F))),
+        BRONZE_BLOCK = registerBlock("bronze_block",
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)
+                    .mapColor(MapColor.COLOR_YELLOW)
+                    .strength(5.5F, 6.0F)));
 
     public static final DeferredBlock<IncompleteCraftingTableBlock> INCOMPLETE_CRAFTING_TABLE = registerBlock("incomplete_crafting_table",
             () -> new IncompleteCraftingTableBlock(BlockBehaviour.Properties.of().

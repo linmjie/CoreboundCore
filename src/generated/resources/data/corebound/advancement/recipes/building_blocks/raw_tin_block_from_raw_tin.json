@@ -1,32 +1,32 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "corebound:tin_block_from_tin"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_tin_ingot": {
+    "has_raw_tin": {
       "conditions": {
         "items": [
           {
-            "items": "corebound:tin_ingot"
+            "items": "corebound:raw_tin"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "corebound:raw_tin_block_from_raw_tin"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "has_tin_ingot"
+      "has_raw_tin"
     ]
   ],
   "rewards": {
     "recipes": [
-      "corebound:tin_block_from_tin"
+      "corebound:raw_tin_block_from_raw_tin"
     ]
   }
 }

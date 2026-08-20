@@ -24,6 +24,12 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
         super(output, registries);
     }
 
+    protected static String getHasName(TagKey<Item> tag) {
+        String base = tag.toString();
+        String[] split = base.split("/");
+        return split[split.length - 1].substring(0, split.length - 1);
+    }
+
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
         crudeSwordRecipe(recipeOutput, ItemTags.PLANKS, Items.WOODEN_SWORD, "wooden", CBItems.TWIG);
@@ -37,6 +43,12 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
         crudePickaxeRecipe(recipeOutput, ItemTags.STONE_TOOL_MATERIALS, Items.STONE_PICKAXE, "stone", CBItems.ROCK);
         crudeAxeRecipe(recipeOutput, ItemTags.STONE_TOOL_MATERIALS, Items.STONE_AXE, "stone", CBItems.ROCK);
         crudeHoeRecipe(recipeOutput, ItemTags.STONE_TOOL_MATERIALS, Items.STONE_HOE, "stone", CBItems.ROCK);
+
+        swordRecipe(recipeOutput, CBTags.Items.INGOTS_BRONZE, CBItems.BRONZE_SWORD);
+        shovelRecipe(recipeOutput, CBTags.Items.INGOTS_BRONZE, CBItems.BRONZE_SHOVEL);
+        pickaxeRecipe(recipeOutput, CBTags.Items.INGOTS_BRONZE, CBItems.BRONZE_PICKAXE);
+        axeRecipe(recipeOutput, CBTags.Items.INGOTS_BRONZE, CBItems.BRONZE_AXE);
+        hoeRecipe(recipeOutput, CBTags.Items.INGOTS_BRONZE, CBItems.BRONZE_HOE);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, CBItems.WOODEN_SHEARS.get())
                 .pattern(" P ")
@@ -101,7 +113,7 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
                 .define('#', CBTags.Items.INGOTS_STEEL)
                 .define('B', Items.GLASS_BOTTLE)
                 .define('X', CBTags.Items.INGOTS_BRASS)
-                .unlockedBy("has_steel", has(CBTags.Items.INGOTS_STEEL))
+                .unlockedBy("has_steel_ingot", has(CBTags.Items.INGOTS_STEEL))
                 .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, Blocks.CAMPFIRE)
@@ -112,7 +124,11 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
                 .unlockedBy(getHasName(CBItems.TWIG), has(CBItems.TWIG))
                 .save(recipeOutput, modPrefix() + "campfire");
 
-        ninePacker(recipeOutput, CBItems.RAW_TIN.get(), CBBlocks.RAW_TIN_BLOCK.get(), "tin");
+        ninePacker(recipeOutput, CBItems.RAW_TIN.get(), CBBlocks.RAW_TIN_BLOCK.get(), "raw_tin");
+        ninePacker(recipeOutput, CBItems.TIN_INGOT.get(), CBBlocks.TIN_BLOCK.get(), "tin");
+        ninePacker(recipeOutput, CBItems.TIN_NUGGET.get(), CBItems.TIN_INGOT.get(), "tin_nugget", "tin_ingot");
+        ninePacker(recipeOutput, CBItems.BRONZE_INGOT.get(), CBBlocks.BRONZE_BLOCK.get(), "bronze_nugget");
+        ninePacker(recipeOutput, CBItems.BRONZE_NUGGET.get(), CBItems.BRONZE_INGOT.get(), "bronze_nugget", "bronze_ingot");
 
         coreboundToolsFiring(recipeOutput, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, 200);
         coreboundToolsFiring(recipeOutput, "blasting", RecipeSerializer.BLASTING_RECIPE, BlastingRecipe::new, 1200);
@@ -282,7 +298,7 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
 
     //STANDARD TOOLS
     protected static void swordRecipe (RecipeOutput pRecipeOutput,
-                                       ItemLike pMaterial, ItemLike tool)
+                                       TagKey<Item> pMaterial, ItemLike tool)
     {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, tool)
                 .pattern("#")
@@ -294,7 +310,7 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
                 .save(pRecipeOutput);
     }
     protected static void shovelRecipe (RecipeOutput pRecipeOutput,
-                                       ItemLike pMaterial, ItemLike tool)
+                                        TagKey<Item> pMaterial, ItemLike tool)
     {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, tool)
                 .pattern("#")
@@ -306,7 +322,7 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
                 .save(pRecipeOutput);
     }
     protected static void pickaxeRecipe (RecipeOutput pRecipeOutput,
-                                       ItemLike pMaterial, ItemLike tool)
+                                         TagKey<Item> pMaterial, ItemLike tool)
     {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, tool)
                 .pattern("###")
@@ -318,7 +334,7 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
                 .save(pRecipeOutput);
     }
     protected static void axeRecipe (RecipeOutput pRecipeOutput,
-                                      ItemLike pMaterial, ItemLike tool)
+                                     TagKey<Item> pMaterial, ItemLike tool)
     {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, tool)
                 .pattern("##")
@@ -330,7 +346,7 @@ public class CBVanillaRecipeGen extends RecipeProvider implements IConditionBuil
                 .save(pRecipeOutput);
     }
     protected static void hoeRecipe (RecipeOutput pRecipeOutput,
-                                       ItemLike pMaterial, ItemLike tool)
+                                     TagKey<Item> pMaterial, ItemLike tool)
     {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, tool)
                 .pattern("##")

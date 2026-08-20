@@ -1,5 +1,7 @@
 {
   "values": [
-    "corebound:raw_tin_block"
+    "corebound:raw_tin_block",
+    "corebound:tin_block",
+    "corebound:bronze_block"
   ]
 }

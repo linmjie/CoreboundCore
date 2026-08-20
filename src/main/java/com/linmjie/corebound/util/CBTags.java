@@ -11,12 +11,19 @@ import net.minecraft.world.level.block.Block;
 public class CBTags {
     public static class Blocks {
         public static final TagKey<Block>
+
             DROPS_ROCKS = createTag("drops_rocks"),
+            INCORRECT_FOR_BRONZE_TOOL = createTag("incorrect_for_bronze_tool"),
 
             //COMMON
 
             TIN_ORES = createCommonTag("ores/tin"),
-            RAW_TIN_STORAGE = createCommonTag("storage_blocks/raw_tin");
+
+            RAW_TIN_STORAGE = createCommonTag("storage_blocks/raw_tin"),
+
+            STORAGE_BLOCKS_TIN = createCommonTag("storage_blocks/tin"),
+            STORAGE_BLOCKS_BRONZE = createCommonTag("storage_blocks/bronze"),
+            STORAGE_BLOCKS_STEEL = createCommonTag("storage_blocks/steel");
 
         private static net.minecraft.tags.TagKey<Block> createTag(String name){
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(Corebound.MODID, name));
@@ -42,15 +49,22 @@ public class CBTags {
             //COMMON
 
             RAW_MATERIALS_TIN = createCommonTag("raw_materials/tin"),
-            STORAGE_BLOCKS_RAW_TIN = createCommonTag("storage_blocks/raw_tin"),
 
+            INGOTS_TIN = createCommonTag("ingots/tin"),
+            INGOTS_BRONZE = createCommonTag("ingots/bronze"),
             INGOTS_STEEL = createCommonTag("ingots/steel"),
             INGOTS_BRASS = createCommonTag("ingots/brass"),
 
+            NUGGETS_TIN = createCommonTag("nuggets/tin"),
+            NUGGETS_BRONZE = createCommonTag("nuggets/bronze"),
             NUGGETS_STEEL = createCommonTag("nuggets/steel"),
 
             PLATES_STEEL = createCommonTag("plates/steel"),
 
+            STORAGE_BLOCKS_RAW_TIN = createCommonTag("storage_blocks/raw_tin"),
+
+            STORAGE_BLOCKS_TIN = createCommonTag("storage_blocks/tin"),
+            STORAGE_BLOCKS_BRONZE = createCommonTag("storage_blocks/bronze"),
             STORAGE_BLOCKS_STEEL = createCommonTag("storage_blocks/steel");
 
         private static net.minecraft.tags.TagKey<Item> createTag(String name){

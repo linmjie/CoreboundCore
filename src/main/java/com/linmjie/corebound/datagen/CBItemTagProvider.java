@@ -105,9 +105,33 @@ public class CBItemTagProvider extends ItemTagsProvider {
         tag(CBTags.Items.RAW_MATERIALS_TIN)
                 .add(CBItems.RAW_TIN.get());
 
+        tag(Tags.Items.NUGGETS)
+                .add(CBItems.DEV_STEEL_CRAFTER.get())
+                .add(CBItems.TIN_NUGGET.get())
+                .add(CBItems.BRONZE_INGOT.get());
+        tag(CBTags.Items.NUGGETS_TIN)
+                .add(CBItems.TIN_NUGGET.get());
+        tag(CBTags.Items.NUGGETS_BRONZE)
+                .add(CBItems.BRONZE_NUGGET.get());
+
+        tag(Tags.Items.INGOTS)
+                .add(CBItems.DEV_STEEL_CRAFTER.get())
+                .add(CBItems.TIN_INGOT.get())
+                .add(CBItems.BRONZE_INGOT.get());
+        tag(CBTags.Items.INGOTS_TIN)
+                .add(CBItems.TIN_INGOT.get());
+        tag(CBTags.Items.INGOTS_BRONZE)
+                .add(CBItems.BRONZE_INGOT.get());
+
         tag(Tags.Items.STORAGE_BLOCKS)
-                .add(CBBlocks.RAW_TIN_BLOCK.asItem());
+                .add(CBBlocks.RAW_TIN_BLOCK.asItem())
+                .add(CBBlocks.TIN_BLOCK.asItem())
+                .add(CBBlocks.BRONZE_BLOCK.asItem());
         tag(CBTags.Items.STORAGE_BLOCKS_RAW_TIN)
                 .add(CBBlocks.RAW_TIN_BLOCK.asItem());
+        tag(CBTags.Items.STORAGE_BLOCKS_TIN)
+                .add(CBBlocks.TIN_BLOCK.asItem());
+        tag(CBTags.Items.STORAGE_BLOCKS_BRONZE)
+                .add(CBBlocks.BRONZE_BLOCK.asItem());
     }
 }

@@ -38,6 +38,9 @@ public class CBBlockTagProvider extends BlockTagsProvider {
                 .add(CBBlocks.DEEPSLATE_TIN_ORE.get());
         tag(BlockTags.INCORRECT_FOR_GOLD_TOOL)
                 .add(CBBlocks.RAW_TIN_BLOCK.get());
+        tag(CBTags.Blocks.INCORRECT_FOR_BRONZE_TOOL)
+                .addTag(BlockTags.INCORRECT_FOR_IRON_TOOL)
+                .addTag(BlockTags.DIAMOND_ORES);
 
         tag(CBTags.Blocks.DROPS_ROCKS)
                 .add(Blocks.COBBLESTONE)
@@ -45,6 +48,8 @@ public class CBBlockTagProvider extends BlockTagsProvider {
                 .add(Blocks.STONE)
                 .add(Blocks.DEEPSLATE)
                 .add(Blocks.BLACKSTONE);
+
+        // COMMON
 
         tag(Tags.Blocks.ORES)
                 .addTag(CBTags.Blocks.TIN_ORES);
@@ -57,8 +62,14 @@ public class CBBlockTagProvider extends BlockTagsProvider {
                 .add(CBBlocks.DEEPSLATE_TIN_ORE.get());
 
         tag(Tags.Blocks.STORAGE_BLOCKS)
-                .add(CBBlocks.RAW_TIN_BLOCK.get());
+                .add(CBBlocks.RAW_TIN_BLOCK.get())
+                .add(CBBlocks.TIN_BLOCK.get())
+                .add(CBBlocks.BRONZE_BLOCK.get());
         tag(CBTags.Blocks.RAW_TIN_STORAGE)
                 .add(CBBlocks.RAW_TIN_BLOCK.get());
+        tag(CBTags.Blocks.STORAGE_BLOCKS_TIN)
+                .add(CBBlocks.TIN_BLOCK.get());
+        tag(CBTags.Blocks.STORAGE_BLOCKS_BRONZE)
+                .add(CBBlocks.BRONZE_BLOCK.get());
     }
 }

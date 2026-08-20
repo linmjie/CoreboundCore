@@ -18,6 +18,8 @@ public class CBBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(CBBlocks.RAW_TIN_BLOCK.get());
+        dropSelf(CBBlocks.TIN_BLOCK.get());
+        dropSelf(CBBlocks.BRONZE_BLOCK.get());
         dropSelf(CBBlocks.INCOMPLETE_CRAFTING_TABLE.get());
         dropSelf(CBBlocks.DARK_PORTAL.get());
 

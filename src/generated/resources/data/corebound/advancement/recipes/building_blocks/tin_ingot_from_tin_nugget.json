@@ -3,15 +3,15 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "corebound:tin_block_from_tin"
+        "recipe": "corebound:tin_ingot_from_tin_nugget"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_tin_ingot": {
+    "has_tin_nugget": {
       "conditions": {
         "items": [
           {
-            "items": "corebound:tin_ingot"
+            "items": "corebound:tin_nugget"
           }
         ]
       },
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_tin_ingot"
+      "has_tin_nugget"
     ]
   ],
   "rewards": {
     "recipes": [
-      "corebound:tin_block_from_tin"
+      "corebound:tin_ingot_from_tin_nugget"
     ]
   }
 }

@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "corebound:tin_block_from_tin"
+        "recipe": "corebound:tin_nugget_from_tin_ingot"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "corebound:tin_block_from_tin"
+      "corebound:tin_nugget_from_tin_ingot"
     ]
   }
 }
