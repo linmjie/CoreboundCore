@@ -9,7 +9,7 @@ public class CBTiers {
     public static final Tier
         BRONZE = new SimpleTier(
             CBTags.Blocks.INCORRECT_FOR_BRONZE_TOOL,
-            250, 6f, 1.5f, 18,
+            250, 6f, 2.5f, 18,
             () -> Ingredient.of(CBTags.Items.INGOTS_BRONZE)
         );
 }

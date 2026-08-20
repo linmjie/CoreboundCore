@@ -15,6 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -28,7 +29,8 @@ public class CanteenItem extends Item {
         super(properties);
     }
 
-    public static ItemStack getDefaultCanteen() {
+    @Override
+    public @NotNull ItemStack getDefaultInstance() {
         ItemStack canteen = new ItemStack(CBItems.CANTEEN.get());
         canteen.set(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
         canteen.set(CBDataComponentTypes.CANTEEN_POTION_COUNT, 0);
