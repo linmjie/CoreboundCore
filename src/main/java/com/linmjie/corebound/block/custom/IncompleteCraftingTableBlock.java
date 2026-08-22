@@ -24,6 +24,7 @@ import net.minecraft.world.phys.BlockHitResult;
 public class IncompleteCraftingTableBlock extends CraftingTableBlock {
     public static final MapCodec<IncompleteCraftingTableBlock> CODEC = simpleCodec(IncompleteCraftingTableBlock::new);
     private static final Component CONTAINER_TITLE = Component.translatable("container.incomplete_crafting");
+
     public static final BooleanProperty HAS_SAW = BooleanProperty.create("has_saw");
     public static final BooleanProperty HAS_PLIERS = BooleanProperty.create("has_pliers");
     public static final BooleanProperty HAS_HAMMER = BooleanProperty.create("has_hammer");
@@ -106,10 +107,9 @@ public class IncompleteCraftingTableBlock extends CraftingTableBlock {
     @Override
     protected MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
         return new SimpleMenuProvider(
-                (p_52229_, p_52230_, p_52231_) -> new IncompleteCraftingMenu(
-                        p_52229_, p_52230_, ContainerLevelAccess.create(level, pos),
+                (containerId, inv, player) -> new IncompleteCraftingMenu(
+                        containerId, inv, ContainerLevelAccess.create(level, pos),
                         state.getValue(HAS_SAW), state.getValue(HAS_PLIERS), state.getValue(HAS_HAMMER)),
-                CONTAINER_TITLE
-        );
+                CONTAINER_TITLE);
     }
 }

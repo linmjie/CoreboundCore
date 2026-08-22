@@ -10,7 +10,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.StackedContents;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
@@ -25,25 +24,13 @@ import java.util.Optional;
 import java.util.Set;
 
 //Temporary solution??? (hopefully)
-//Important logic at slotsChangedCraftingGrid method
-public class IncompleteCraftingMenu extends RecipeBookMenu<CraftingInput, CraftingRecipe>{
-    public static final int RESULT_SLOT = 0;
-    private static final int CRAFT_SLOT_START = 1;
-    private static final int CRAFT_SLOT_END = 10;
-    private static final int INV_SLOT_START = 10;
-    private static final int INV_SLOT_END = 37;
-    private static final int USE_ROW_SLOT_START = 37;
-    private static final int USE_ROW_SLOT_END = 46;
-    private final CraftingContainer craftSlots;
-    private final ResultContainer resultSlots;
-    private final ContainerLevelAccess access;
-    private final Player player;
-    private boolean placingRecipe;
 
+public class IncompleteCraftingMenu extends CraftingMenu{
     private final boolean hasSaw;
     private final boolean hasPliers;
     private final boolean hasHammer;
 
+    // I swear these will be "recipe tags" later
     private final Set<String> sawRecipes;
     private final Set<String> pliersRecipes;
     private final Set<String> hammerRecipes;
@@ -55,28 +42,7 @@ public class IncompleteCraftingMenu extends RecipeBookMenu<CraftingInput, Crafti
     }
 
     public IncompleteCraftingMenu(int containerId, Inventory playerInventory, ContainerLevelAccess access, boolean hasSaw, boolean hasPliers, boolean hasHammer) {
-        super(MenuType.CRAFTING, containerId);
-        this.craftSlots = new TransientCraftingContainer(this, 3, 3);
-        this.resultSlots = new ResultContainer();
-        this.access = access;
-        this.player = playerInventory.player;
-        this.addSlot(new ResultSlot(playerInventory.player, this.craftSlots, this.resultSlots, 0, 124, 35));
-
-        for(int i = 0; i < 3; ++i) {
-            for(int j = 0; j < 3; ++j) {
-                this.addSlot(new Slot(this.craftSlots, j + i * 3, 30 + j * 18, 17 + i * 18));
-            }
-        }
-
-        for(int k = 0; k < 3; ++k) {
-            for(int i1 = 0; i1 < 9; ++i1) {
-                this.addSlot(new Slot(playerInventory, i1 + k * 9 + 9, 8 + i1 * 18, 84 + k * 18));
-            }
-        }
-
-        for(int l = 0; l < 9; ++l) {
-            this.addSlot(new Slot(playerInventory, l, 8 + l * 18, 142));
-        }
+        super(containerId, playerInventory, access);
 
         this.hasSaw = hasSaw;
         this.hasPliers = hasPliers;
@@ -94,7 +60,7 @@ public class IncompleteCraftingMenu extends RecipeBookMenu<CraftingInput, Crafti
         hammerRecipes.add("corebound:cobblestone");
 
         alwaysAllow = new HashSet<>();
-        hammerRecipes.addAll(CoreboundUtils.collectItems(CBTags.Items.UNFIRED_CRAFTING_TOOLS));
+        alwaysAllow.addAll(CoreboundUtils.collectItems(CBTags.Items.UNFIRED_CRAFTING_TOOLS));
     }
 
     protected boolean validateRecipe(String resource){
@@ -110,151 +76,56 @@ public class IncompleteCraftingMenu extends RecipeBookMenu<CraftingInput, Crafti
         return alwaysAllow.contains(resource);
     }
 
-    //This method is static in the crafting menu vanilla class, otherwise I would've just overridden it
-    //I don't want to figure out MIXIN stuff to redirect the static method call T_T
-    protected void slotChangedCraftingGrid(Level level, Player player, CraftingContainer craftSlots, ResultContainer resultSlots, @Nullable RecipeHolder<CraftingRecipe> recipe) {
+    // This method is static in the crafting menu vanilla class, otherwise I would've just overridden it
+    // Everything starting here could be done in like a ten line mixin but this is prob safer
+    protected void slotChangedCraftingGrid(Level level, Player player,
+                                           CraftingContainer craftSlots,
+                                           ResultContainer resultSlots,
+                                           @Nullable RecipeHolder<CraftingRecipe> recipe)
+    {
         if (!level.isClientSide) {
-            CraftingInput craftinginput = craftSlots.asCraftInput();
-            ServerPlayer serverplayer = (ServerPlayer)player;
-            ItemStack itemstack = ItemStack.EMPTY;
-            Optional<RecipeHolder<CraftingRecipe>> optional = level.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftinginput, level, recipe);
+            CraftingInput craftingInput = craftSlots.asCraftInput();
+            ServerPlayer serverPlayer = (ServerPlayer)player;
+            ItemStack stack = ItemStack.EMPTY;
+            var optional = level.getServer()
+                    .getRecipeManager()
+                    .getRecipeFor(RecipeType.CRAFTING, craftingInput, level, recipe);
             if (optional.isPresent()) {
-                RecipeHolder<CraftingRecipe> recipeholder = (RecipeHolder)optional.get();
-
-                String resource = recipeholder.id().toString();
-
-                CraftingRecipe craftingrecipe = (CraftingRecipe) recipeholder.value();
-
-                if (validateRecipe(resource) ||
-                        CoreboundUtils.recipeIsTwoByTwo(craftingrecipe)
-                ){
-                    if (resultSlots.setRecipeUsed(level, serverplayer, recipeholder)) {
-                        ItemStack itemstack1 = craftingrecipe.assemble(craftinginput, level.registryAccess());
-                        if (itemstack1.isItemEnabled(level.enabledFeatures())) {
-                            itemstack = itemstack1;
+                RecipeHolder<CraftingRecipe> recipeHolder = optional.get();
+                String resource = recipeHolder.id().toString();
+                CraftingRecipe craftingRecipe = recipeHolder.value();
+                if (validateRecipe(resource) || craftingRecipe.canCraftInDimensions(2, 2)){
+                    if (resultSlots.setRecipeUsed(level, serverPlayer, recipeHolder)) {
+                        ItemStack assembled = craftingRecipe.assemble(craftingInput, level.registryAccess());
+                        if (assembled.isItemEnabled(level.enabledFeatures())) {
+                            stack = assembled;
                         }
                     }
                 }
             }
-
-            resultSlots.setItem(0, itemstack);
-            this.setRemoteSlot(0, itemstack);
-            serverplayer.connection.send(new ClientboundContainerSetSlotPacket(this.containerId, this.incrementStateId(), 0, itemstack));
+            resultSlots.setItem(0, stack);
+            this.setRemoteSlot(0, stack);
+            serverPlayer.connection.send(new ClientboundContainerSetSlotPacket(this.containerId, this.incrementStateId(), 0, stack));
         }
 
     }
 
-    //Most of the stuff below is the original crafting menu stuff
+    // just changing slotChangedCraftingGrid(this, ...) to this.slotsChangedCraftingGrid(...) lol
 
     public void slotsChanged(Container inventory) {
         if (!this.placingRecipe) {
-            this.access.execute((level, blockPos) -> this.slotChangedCraftingGrid(level, this.player, this.craftSlots, this.resultSlots, (RecipeHolder)null));
+            this.access.execute(
+                (level, blockPos) -> this.slotChangedCraftingGrid(level, this.player, this.craftSlots, this.resultSlots, null));
         }
-
-    }
-
-    public void beginPlacingRecipe() {
-        this.placingRecipe = true;
     }
 
     public void finishPlacingRecipe(RecipeHolder<CraftingRecipe> recipe) {
         this.placingRecipe = false;
-        this.access.execute((level, blockPos) -> this.slotChangedCraftingGrid(level, this.player, this.craftSlots, this.resultSlots, recipe));
-    }
-
-    public void fillCraftSlotsStackedContents(StackedContents itemHelper) {
-        this.craftSlots.fillStackedContents(itemHelper);
-    }
-
-    public void clearCraftingContent() {
-        this.craftSlots.clearContent();
-        this.resultSlots.clearContent();
-    }
-
-    public boolean recipeMatches(RecipeHolder<CraftingRecipe> recipe) {
-        return ((CraftingRecipe)recipe.value()).matches(this.craftSlots.asCraftInput(), this.player.level());
-    }
-
-    public void removed(Player player) {
-        super.removed(player);
-        this.access.execute((level, blockPos) -> this.clearContainer(player, this.craftSlots));
+        this.access.execute(
+            (level, blockPos) -> this.slotChangedCraftingGrid(level, this.player, this.craftSlots, this.resultSlots, recipe));
     }
 
     public boolean stillValid(Player player) {
         return stillValid(this.access, player, CBBlocks.INCOMPLETE_CRAFTING_TABLE.get());
-    }
-
-    public ItemStack quickMoveStack(Player player, int index) {
-        ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = (Slot)this.slots.get(index);
-        if (slot != null && slot.hasItem()) {
-            ItemStack itemstack1 = slot.getItem();
-            itemstack = itemstack1.copy();
-            if (index == 0) {
-                this.access.execute((p_39378_, p_39379_) -> itemstack1.getItem().onCraftedBy(itemstack1, p_39378_, player));
-                if (!this.moveItemStackTo(itemstack1, 10, 46, true)) {
-                    return ItemStack.EMPTY;
-                }
-
-                slot.onQuickCraft(itemstack1, itemstack);
-            } else if (index >= 10 && index < 46) {
-                if (!this.moveItemStackTo(itemstack1, 1, 10, false)) {
-                    if (index < 37) {
-                        if (!this.moveItemStackTo(itemstack1, 37, 46, false)) {
-                            return ItemStack.EMPTY;
-                        }
-                    } else if (!this.moveItemStackTo(itemstack1, 10, 37, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                }
-            } else if (!this.moveItemStackTo(itemstack1, 10, 46, false)) {
-                return ItemStack.EMPTY;
-            }
-
-            if (itemstack1.isEmpty()) {
-                slot.setByPlayer(ItemStack.EMPTY);
-            } else {
-                slot.setChanged();
-            }
-
-            if (itemstack1.getCount() == itemstack.getCount()) {
-                return ItemStack.EMPTY;
-            }
-
-            slot.onTake(player, itemstack1);
-            if (index == 0) {
-                player.drop(itemstack1, false);
-            }
-        }
-
-        return itemstack;
-    }
-
-    public boolean canTakeItemForPickAll(ItemStack stack, Slot slot) {
-        return slot.container != this.resultSlots && super.canTakeItemForPickAll(stack, slot);
-    }
-
-    public int getResultSlotIndex() {
-        return 0;
-    }
-
-    public int getGridWidth() {
-        return this.craftSlots.getWidth();
-    }
-
-    public int getGridHeight() {
-        return this.craftSlots.getHeight();
-    }
-
-    public int getSize() {
-        return 10;
-    }
-
-    public RecipeBookType getRecipeBookType() {
-        return RecipeBookType.CRAFTING;
-    }
-
-    public boolean shouldMoveToInventory(int slotIndex) {
-        return slotIndex != this.getResultSlotIndex();
     }
 }
