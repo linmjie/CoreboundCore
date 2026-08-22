@@ -70,7 +70,8 @@ public class CBEvents {
     private static final HashMap<ServerPlayer, Integer> CLAY_SHOVEL_TICK_QUEUE = new HashMap<>();
 
     private static final int CLAY_GETTER_DELAY = 5;
-    private static final double CLAY_DROP_PROB = 0.8;
+    private static final double CLAY_DROP_PROBABILITY = 0.8;
+    private static final double Y_OFFSET = 0.5;
     //END VARS
 
     @SubscribeEvent
@@ -119,10 +120,9 @@ public class CBEvents {
                 CLAY_SHOVEL_TICK_QUEUE.put((ServerPlayer) player, CLAY_GETTER_DELAY); //Default tick delay of 5
                 stack.hurtAndBreak(1, (ServerLevel) level, (ServerPlayer) player,
                         item -> player.onEquippedItemBroken(item, EquipmentSlot.MAINHAND));
-                if (Math.random() > CLAY_DROP_PROB) { //Succeed to drop clay
+                if (Math.random() > CLAY_DROP_PROBABILITY) { //Succeed to drop clay
                     level.addFreshEntity(new ItemEntity(
-    //Magic number to drop clay ball a little above the block |
-                            level, pos.getX(), pos.getY() + 0.5, pos.getZ(), new ItemStack(Items.CLAY_BALL)));
+                            level, pos.getX(), pos.getY() + Y_OFFSET, pos.getZ(), new ItemStack(Items.CLAY_BALL)));
                     level.playSound(null, pos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 2.5F);
                 } else { //Fail to drop clay
                     level.playSound(null, pos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 0.1F, 0.5F);

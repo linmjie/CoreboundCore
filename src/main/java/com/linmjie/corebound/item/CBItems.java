@@ -52,26 +52,26 @@ public class CBItems {
         HAMMER = ITEMS.registerSimpleItem("hammer",
             new Item.Properties().stacksTo(1)),
 
-        BRONZE_SWORD = ITEMS.register(
-                "bronze_sword", () -> new SwordItem(CBTiers.BRONZE,
+        BRONZE_SWORD = ITEMS.register("bronze_sword",
+                () -> new SwordItem(CBTiers.BRONZE,
                 new Item.Properties()
-                .attributes(SwordItem.createAttributes(CBTiers.BRONZE, 3, -2.6F)))),
-        BRONZE_SHOVEL = ITEMS.register(
-                "bronze_shovel", () -> new ShovelItem(CBTiers.BRONZE,
+                .attributes(SwordItem.createAttributes(CBTiers.BRONZE, 3, -2.2F)))),
+        BRONZE_SHOVEL = ITEMS.register("bronze_shovel",
+                () -> new ShovelItem(CBTiers.BRONZE,
                 new Item.Properties()
-                .attributes(ShovelItem.createAttributes(CBTiers.BRONZE, 1.5F, -3.2F)))),
-        BRONZE_PICKAXE = ITEMS.register(
-                "bronze_pickaxe", () -> new PickaxeItem(CBTiers.BRONZE,
+                .attributes(ShovelItem.createAttributes(CBTiers.BRONZE, 1.5F, -2.8F)))),
+        BRONZE_PICKAXE = ITEMS.register("bronze_pickaxe",
+                () -> new PickaxeItem(CBTiers.BRONZE,
                 new Item.Properties()
-                .attributes(PickaxeItem.createAttributes(CBTiers.BRONZE, 1.0F, -3.0F)))),
-        BRONZE_AXE = ITEMS.register(
-                "bronze_axe", () -> new AxeItem(CBTiers.BRONZE,
+                .attributes(PickaxeItem.createAttributes(CBTiers.BRONZE, 1.0F, -2.6F)))),
+        BRONZE_AXE = ITEMS.register("bronze_axe",
+                () -> new AxeItem(CBTiers.BRONZE,
                 new Item.Properties()
-                .attributes(AxeItem.createAttributes(CBTiers.BRONZE, 6.0F, -3.4F)))),
-        BRONZE_HOE = ITEMS.register(
-                "bronze_hoe", () -> new HoeItem(CBTiers.BRONZE,
+                .attributes(AxeItem.createAttributes(CBTiers.BRONZE, 6.0F, -2.8F)))),
+        BRONZE_HOE = ITEMS.register("bronze_hoe",
+                () -> new HoeItem(CBTiers.BRONZE,
                 new Item.Properties()
-                .attributes(HoeItem.createAttributes(CBTiers.BRONZE, 0.0F, -3.2F)))),
+                .attributes(HoeItem.createAttributes(CBTiers.BRONZE, 0.0F, -2.8F)))),
 
         CANTEEN = ITEMS.register("canteen",
             () -> new CanteenItem(

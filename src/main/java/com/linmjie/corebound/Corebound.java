@@ -44,25 +44,18 @@ public class Corebound {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
-        // Register the Deferred Register to the mod event bus so blocks get registered
         CBBlocks.register(modEventBus);
         CBBlockEntities.register(modEventBus);
-        // Register the Deferred Register to the mod event bus so items get registered
         CBItems.register(modEventBus);
         CBDataComponentTypes.register(modEventBus);
-        // Register the Deferred Register to the mod event bus so tabs get registered
         CBCreativeTabs.register(modEventBus);
+        CBLootRegistries.register(modEventBus);
+        CBMenuTypes.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (corebound) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
-
-        // Register mod global loot modifiers and pass through event bus
-        CBLootRegistries.register(modEventBus);
-
-        //Register Menus
-        CBMenuTypes.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(CBCreativeTabs::addCreative);

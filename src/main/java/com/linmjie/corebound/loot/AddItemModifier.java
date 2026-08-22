@@ -17,25 +17,25 @@ public class AddItemModifier extends LootModifier {
     public static final MapCodec<AddItemModifier> CODEC = RecordCodecBuilder.mapCodec(inst ->
             LootModifier.codecStart(inst).and(inst.group(
                         BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(e -> e.item),
-                            Codec.INT.fieldOf("min").forGetter(e -> e.min_drop),
-                            Codec.INT.fieldOf("max").forGetter(e -> e.max_drop)))
+                            Codec.INT.fieldOf("min").forGetter(e -> e.minDrop),
+                            Codec.INT.fieldOf("max").forGetter(e -> e.maxDrop)))
                     .apply(inst, AddItemModifier::new));
     private final Item item;
-    private final int min_drop;
-    private final int max_drop;
+    private final int minDrop;
+    private final int maxDrop;
 
     public AddItemModifier(LootItemCondition[] conditionsIn, Item item, int minDrop, int maxDrop) {
         super(conditionsIn);
         this.item = item;
-        this.min_drop = minDrop;
-        this.max_drop = maxDrop;
+        this.minDrop = minDrop;
+        this.maxDrop = maxDrop;
     }
 
     public AddItemModifier(LootItemCondition[] conditionsIn, Item item){
         super(conditionsIn);
         this.item = item;
-        this.min_drop = 1;
-        this.max_drop = 1;
+        this.minDrop = 1;
+        this.maxDrop = 1;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class AddItemModifier extends LootModifier {
                 return generatedLoot;
             }
         }
-        generatedLoot.add(new ItemStack(this.item, CoreboundUtils.randomInt(this.min_drop, this.max_drop)));
+        generatedLoot.add(new ItemStack(this.item, CoreboundUtils.randomInt(this.minDrop, this.maxDrop)));
         return generatedLoot;
     }
 

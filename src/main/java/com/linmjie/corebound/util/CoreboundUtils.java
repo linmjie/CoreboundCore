@@ -34,8 +34,4 @@ public class CoreboundUtils {
                 .map(itemString -> replaceNamespace(itemString, namespace))
                 .collect(Collectors.toSet());
     }
-
-    public static boolean recipeIsTwoByTwo(CraftingRecipe craftingRecipe){
-        return craftingRecipe.getIngredients().size() <= 5; //placeholder, doesn't work all the time (slabs)
-    }
 }
