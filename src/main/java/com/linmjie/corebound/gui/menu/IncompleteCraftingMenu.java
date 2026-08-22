@@ -3,7 +3,7 @@ package com.linmjie.corebound.gui.menu;
 import com.linmjie.corebound.Corebound;
 import com.linmjie.corebound.block.CBBlocks;
 import com.linmjie.corebound.util.CoreboundUtils;
-import com.linmjie.corebound.util.CBTags;
+import com.linmjie.corebound.tags.CBTags;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
@@ -20,7 +20,6 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 //Temporary solution??? (hopefully)

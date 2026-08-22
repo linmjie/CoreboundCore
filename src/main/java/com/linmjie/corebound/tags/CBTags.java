@@ -1,11 +1,13 @@
-package com.linmjie.corebound.util;
+package com.linmjie.corebound.tags;
 
 import com.linmjie.corebound.Corebound;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.Block;
 
 public class CBTags {
@@ -25,11 +27,11 @@ public class CBTags {
             STORAGE_BLOCKS_BRONZE = createCommonTag("storage_blocks/bronze"),
             STORAGE_BLOCKS_STEEL = createCommonTag("storage_blocks/steel");
 
-        private static net.minecraft.tags.TagKey<Block> createTag(String name){
+        private static net.minecraft.tags.TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(Corebound.MODID, name));
         }
 
-        private static net.minecraft.tags.TagKey<Block> createCommonTag(String name){
+        private static net.minecraft.tags.TagKey<Block> createCommonTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
         }
     }
@@ -67,12 +69,29 @@ public class CBTags {
             STORAGE_BLOCKS_BRONZE = createCommonTag("storage_blocks/bronze"),
             STORAGE_BLOCKS_STEEL = createCommonTag("storage_blocks/steel");
 
-        private static net.minecraft.tags.TagKey<Item> createTag(String name){
+        private static net.minecraft.tags.TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(Corebound.MODID, name));
         }
 
-        private static net.minecraft.tags.TagKey<Item> createCommonTag(String name){
+        private static net.minecraft.tags.TagKey<Item> createCommonTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
+        }
+    }
+
+    public static class Recipes {
+        public static final RecipeTag
+
+            NEEDS_SAW = incompleteTableTag("needs_saw"),
+            NEEDS_PLIERS = incompleteTableTag("needs_pliers"),
+            NEEDS_HAMMER = incompleteTableTag("needs_hammer"),
+            ALWAYS_CRAFTABLE = incompleteTableTag("always_craftable");
+
+        private static RecipeTag incompleteTableTag(String name) {
+            return createTag("incomplete_crafting_table/" + name);
+        }
+
+        private static RecipeTag createTag(String name) {
+            return RecipeTag.create(Corebound.MODID, name);
         }
     }
 }

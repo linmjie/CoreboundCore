@@ -3,6 +3,9 @@ package com.linmjie.corebound.datagen;
 import com.linmjie.corebound.Corebound;
 import com.linmjie.corebound.datagen.recipe.CBRecipeProvider;
 import com.linmjie.corebound.datagen.recipe.CBVanillaRecipeGen;
+import com.linmjie.corebound.datagen.tags.CBBlockTagProvider;
+import com.linmjie.corebound.datagen.tags.CBItemTagProvider;
+import com.linmjie.corebound.datagen.tags.RecipeTagProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -35,6 +38,7 @@ public class DataGenerators {
         BlockTagsProvider blockTagsProvider = new CBBlockTagProvider(packOutput, lookupProvider, existingFileHelper);
         generator.addProvider(event.includeServer(), blockTagsProvider);
         generator.addProvider(event.includeServer(), new CBItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
+        //generator.addProvider(event.includeServer(), new RecipeTagProvider());
 
         generator.addProvider(event.includeClient(), new CBItemModelProvider(packOutput, existingFileHelper));
         generator.addProvider(event.includeClient(), new CBBlockStateProvider(packOutput, existingFileHelper));

@@ -5,7 +5,7 @@ import com.linmjie.corebound.item.CBItems;
 import com.linmjie.corebound.loot.AddItemModifier;
 import com.linmjie.corebound.loot.LootItemBlockTagPropertyCondition;
 import com.linmjie.corebound.loot.RemoveItemTagModifier;
-import com.linmjie.corebound.util.CBTags;
+import com.linmjie.corebound.tags.CBTags;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;

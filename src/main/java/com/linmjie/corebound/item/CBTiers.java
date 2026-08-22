@@ -1,6 +1,6 @@
 package com.linmjie.corebound.item;
 
-import com.linmjie.corebound.util.CBTags;
+import com.linmjie.corebound.tags.CBTags;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.SimpleTier;

@@ -1,8 +1,8 @@
-package com.linmjie.corebound.datagen;
+package com.linmjie.corebound.datagen.tags;
 
 import com.linmjie.corebound.Corebound;
 import com.linmjie.corebound.block.CBBlocks;
-import com.linmjie.corebound.util.CBTags;
+import com.linmjie.corebound.tags.CBTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
